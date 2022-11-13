@@ -7,7 +7,7 @@ import SignUp from '../routes/SignUp'
 
 const AppRouter = () => {
   return (
-    <div className='mx-8 bg-red-300'>
+    <div className='mx-8'>
     <Router>
         <Routes>
             <Route path='/' element={<Home />}></Route>
