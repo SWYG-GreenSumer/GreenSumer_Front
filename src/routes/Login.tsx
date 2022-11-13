@@ -47,7 +47,7 @@ const Login = () => {
       </div>
       <div className='flex flex-col'>
         <button className='mt-4 text-[#0A0D0A] m-auto'>아이디/비밀번호 찾기</button>
-        <button className='mt-10 text-[#0A0D0A] m-auto'>회원가입이 아직이라면 클릭하세요!</button>
+        <button className='mt-10 mb-10 text-[#0A0D0A] m-auto'>회원가입이 아직이라면 클릭하세요!</button>
       </div>
     </div>
   );
