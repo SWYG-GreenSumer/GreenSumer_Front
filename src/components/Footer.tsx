@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='sm:block justify-center hidden footer footer-center p-10 bg-secondary text-base-100'>
+    <footer className='sm:block justify-center hidden footer footer-center p-10 bg-primary text-base-100'>
       <div>
         <svg
           width='50'
