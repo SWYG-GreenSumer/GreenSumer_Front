@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -10,7 +11,7 @@ const Nav: FunctionComponent<Props> = () => {
   };
 
   const onLogoutHandler = () => {
-    setIsLogin(false);
+    setIsLogin(false);    
   };
 
   return (
@@ -112,7 +113,7 @@ const Nav: FunctionComponent<Props> = () => {
                     <a>Settings</a>
                   </li>
                   <li>
-                    <a onClick={onLoginHandler}>Login</a>
+                    <Link to="/login">Login</Link>
                   </li>
                 </ul>
               </>
