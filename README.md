@@ -7,11 +7,9 @@
   - 🛠 [Supported Frameworks & Examples](#supported-frameworks)
   - 🚇[ Sub Projects](#sub-projects)
   - 🔗[Addons](#addons)
-- 🏅 [Badges & Presentation materials](#badges--presentation-materials)
 - 👥 [Community](#community)
 - 👏 [Contributing](#contributing)
-  - 👨‍💻 [Development scripts](#development-scripts)
-  - 💵 [Backers](#backers)
+  - 👨‍💻 [Development scripts](#development-scripts)  
   - 💸 [Sponsors](#sponsors)
 - :memo: [License](#license)
 
@@ -22,3 +20,5 @@
 npx vite
 ```
 
+## Sponsors
+SWYG <a href="https://www.swygbro.com/">https://www.swygbro.com/</a>
