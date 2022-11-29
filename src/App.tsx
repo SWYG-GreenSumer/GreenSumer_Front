@@ -8,7 +8,7 @@ import {GlobalStyle} from './global-style'
 function App() { 
 
   return (
-    <div>      
+    <div className='h-full'>      
       <Nav />
       {/* 여기에 글로벌-스타일-컴포넌트 위치 */}
       <GlobalStyle /> 

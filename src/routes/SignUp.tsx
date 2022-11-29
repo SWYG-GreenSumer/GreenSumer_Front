@@ -86,7 +86,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           </div>
           <div className='form-control w-full max-w-xl'>
             <label className='label' htmlFor='userPW'>
-              <span className='label-text'>PW</span>
+              <span className='label-text'>Password</span>
             </label>
             <input
               id='userPW'
