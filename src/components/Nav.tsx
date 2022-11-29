@@ -53,9 +53,9 @@ const Nav: FunctionComponent<Props> = () => {
         </div>
         {/* GreenSumer 로고 */}
         <div className='flex-1'>
-          <a className='btn btn-ghost normal-case text-xl text-base-100'>
+          <Link className='btn btn-ghost normal-case text-xl text-base-100' to={'/'}>
             GreenSumer!
-          </a>
+          </Link>
         </div>
         <div className='flex-none gap-2'>
           {/* Search input */}
