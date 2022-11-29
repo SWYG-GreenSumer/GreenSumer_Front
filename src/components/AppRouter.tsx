@@ -10,7 +10,7 @@ import MyPage from '../routes/MyPage';
 
 const AppRouter = () => {
   return (
-    <div className='min-w-full max-w-4xl px-4'>
+    <div className='flex-col min-w-full max-w-4xl px-4 h-full'>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Login />}></Route>

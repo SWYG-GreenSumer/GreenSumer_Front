@@ -55,11 +55,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   }
 
   return (
-    <div className='mb-20'>
+    <div className='mb-20 m-auto w-fit'>
       {/* Seller Consumer 버튼 */}
-      <div className='flex justify-evenly my-5 mx-auto'>
+      <div className='flex my-5'>
         <button
-          className='btn btn-primary text-2xl font-bold text-white min-w-fit h-10'
+          className='btn btn-primary text-2xl font-bold text-white min-w-fit h-10 mr-60'
           onClick={onSellerClick}>
           Seller
         </button>
@@ -70,7 +70,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         </button>
       </div>
       {/* 회원가입 input */}
-      <div className='SignupInputContainer flex-col justify-center m-auto max-w-xl'>        
+      <div className='SignupInputContainer flex-col justify-center max-w-xl'>        
           <div className='form-control w-full'>
             <label className='label' htmlFor='userID'>
               <span className='label-text'>ID</span>
