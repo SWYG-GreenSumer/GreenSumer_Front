@@ -55,9 +55,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   }
 
   return (
-    <>
+    <div className='mb-20'>
       {/* Seller Consumer 버튼 */}
-      <div className='flex justify-between my-5'>
+      <div className='flex justify-evenly my-5 mx-auto'>
         <button
           className='btn btn-primary text-2xl font-bold text-white min-w-fit h-10'
           onClick={onSellerClick}>
@@ -153,7 +153,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           <button className="btn btn-block btn-success mt-8">회원가입</button>
         
       </div>
-    </>
+    </div>
   );
 };
 
