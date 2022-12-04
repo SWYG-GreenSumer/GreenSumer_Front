@@ -15,8 +15,8 @@ const Login: FunctionComponent<LoginProps> = () => {
         </p>
       </div>
       
-        <form method='post' className=''>
-          <div className='form-control'>
+        <form method='post' className='flex flex-col items-center'>
+          <div className='form-control w-full max-w-xl'>
             <label className='label' htmlFor='userID'>
               <span className='label-text'>ID</span>
             </label>
@@ -27,7 +27,7 @@ const Login: FunctionComponent<LoginProps> = () => {
               className='input input-bordered w-full max-w-xl'           
             />
           </div>
-          <div className='form-control'>
+          <div className='form-control w-full max-w-xl'>
             <label className='label' htmlFor='userPW'>
               <span className='label-text'>Password</span>
             </label>
@@ -38,7 +38,7 @@ const Login: FunctionComponent<LoginProps> = () => {
               className='input input-bordered w-full max-w-xl'        
             />
           </div>
-          <div className='mt-8'>
+          <div className='mt-8 w-full max-w-xl'>
             <button className='btn btn-block max-w-xl' onClick={onLoginHandler}>Enter!</button>
           </div>
         </form>
