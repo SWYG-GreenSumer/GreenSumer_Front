@@ -55,7 +55,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   }
 
   return (
-    <div className='mb-20 m-auto w-fit'>
+    <div className='m-auto w-fit'>
       {/* Seller Consumer 버튼 */}
       <div className='flex my-5'>
         <button
@@ -140,7 +140,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           </div>
           )}
           {
-            openPostcode &&           
+            isSeller && openPostcode &&           
             <DaumPostcodeEmbed 
              // 값을 선택할 경우 실행되는 이벤트
             onComplete={handle.selectAddress}
