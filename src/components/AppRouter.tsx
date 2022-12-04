@@ -10,7 +10,7 @@ import MyPage from '../routes/MyPage';
 
 const AppRouter = () => {
   return (
-    <div className='max-h-full min-h-[70vh] mb-10 m-auto w-4/5 flex flex-col justify-center'>
+    <div className='max-h-full min-h-[70vh] mb-10 mt-10 m-auto w-4/5 flex flex-col justify-center'>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Login />}></Route>

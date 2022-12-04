@@ -1,20 +1,21 @@
-import React from "react";
-import Map from "../components/Home/Map";
-import ReviewBoard from "../components/Home/ReviewBoard/ReviewBoard";
-import StoreEventNotice from "../components/Home/StoreEventNotice";
+import React, { FunctionComponent } from 'react';
+import Map from '../components/Home/Map';
+import ReviewBoard from '../components/Home/ReviewBoard/ReviewBoard';
+import MBTILink from '../components/Home/MBTILink';
 
-const Home = () => {
+type HomeProps = {};
+
+const Home: FunctionComponent<HomeProps> = () => {
   return (
     <div>
-      <div className="flex flex-col w-full lg:flex-row">
-        <div className="grid flex-grow h-60 card bg-success rounded-box place-items-center">
-          <Map />
-          <div>가까운 매장 길 찾기 {">>"}</div>
+      <div className='flex flex-col w-full lg:flex-row'>
+        <div className='h-fit lg:w-1/2 card rounded-box'>
+          <Map />          
         </div>
-        <div className="divider lg:divider-horizontal" />
-        <div className="grid flex-grow h-60 card bg-success rounded-box place-items-center">
+        <div className='divider lg:divider-horizontal' />
+        <div className='h-[32rem] lg:w-1/2 justify-between card rounded-box'>
+          <MBTILink />
           <ReviewBoard />
-          <StoreEventNotice />
         </div>
       </div>
     </div>
