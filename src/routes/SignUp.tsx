@@ -2,9 +2,12 @@ import React, {
   FunctionComponent,
   ReactEventHandler,
   useCallback,
+  useEffect,
   useState,
 } from 'react';
 import DaumPostcodeEmbed from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
+const { kakao } = window as any;
 
 interface SignUpProps {}
 
@@ -21,6 +24,8 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [userEmail, setUserEmail] = React.useState<string>('');
   const [userNickname, setUserNickname] = React.useState<string>('');
   const [userAddress, setUserAddress] = React.useState<string>('');
+  const [lat, setLat] = React.useState<string>('');
+  const [lng, setLng] = React.useState<string>('');
 
   // 유효성 검사를 위한 boolean
   const [isID, setIsID] = React.useState<boolean>(false);
@@ -37,6 +42,35 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     useState<string>('');
   const [emailMessage, setEmailMessage] = useState<string>('');
   const [nicknameMessage, setNicknameMessage] = useState<string>('');
+
+  // 주소 Geocoding
+  const geocoder = new kakao.maps.services.Geocoder();
+
+  // Router
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    userAddress &&
+      // 주소로 좌표를 검색합니다..
+      geocoder.addressSearch(
+        userAddress,
+        function (
+          result: {
+            y: string;
+            x: string;
+          }[],
+          status: any
+        ) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            console.log(coords);
+            setLat(coords.La);
+            setLng(coords.Ma);
+          }
+        }
+      );
+  }, [isAddress]);
 
   const onSellerClick = () => {
     setIsSeller(true);
@@ -134,6 +168,19 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     },
     []
   );
+
+  const SignUpClickHandle = () => {
+    alert(`${userID}
+    ${userPW}
+    ${userEmail}
+    ${userNickname}
+    ${userAddress}
+    ${lat}
+    ${lng}
+    회원가입이 완료되었습니다.
+    `);
+    navigate('/');
+  };
 
   const handle = {
     // 주소 검색 버튼 클릭 이벤트
@@ -274,7 +321,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               className='input input-bordered w-full max-w-xl'
               value={userAddress}
               onClick={handle.onAddressSearchClick}
-              onFocus={handle.onAddressSearchClick}
+              // onFocus={handle.onAddressSearchClick}
               required
             />
           </div>
@@ -292,6 +339,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         )}
         <button
           className='btn btn-block btn-success mt-8'
+          onClick={SignUpClickHandle}
           disabled={
             isSeller
               ? !(
