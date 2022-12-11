@@ -7,7 +7,7 @@ const MBTILink: FunctionComponent<MBTILinkProps> = () => {
     <div className='h-96 sm:h-60'>
       <div className='card sm:card-side bg-base-100 shadow-xl h-full'>
         <figure>
-          <img src='https://placeimg.com/400/400/arch' alt='Album' />
+          <img className='h-[90%]' src='public\icon\SumBTI.svg' alt='MBTI Test' />
         </figure>
         <div className='card-body p-5 w-full sm:w-1/2'>
           <h2 className='card-title'>그린슘BTI 테스트</h2>

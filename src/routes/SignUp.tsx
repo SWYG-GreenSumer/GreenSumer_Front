@@ -2,9 +2,12 @@ import React, {
   FunctionComponent,
   ReactEventHandler,
   useCallback,
+  useEffect,
   useState,
 } from 'react';
 import DaumPostcodeEmbed from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
+const { kakao } = window as any;
 
 interface SignUpProps {}
 
@@ -21,7 +24,8 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [userEmail, setUserEmail] = React.useState<string>('');
   const [userNickname, setUserNickname] = React.useState<string>('');
   const [userAddress, setUserAddress] = React.useState<string>('');
-  const [userZonecode, setUserZonecode] = React.useState<string>('');
+  const [lat, setLat] = React.useState<string>('');
+  const [lng, setLng] = React.useState<string>('');
 
   // 유효성 검사를 위한 boolean
   const [isID, setIsID] = React.useState<boolean>(false);
@@ -29,6 +33,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [isPWConfirm, setIsPWConfirm] = React.useState<boolean>(false);
   const [isEmail, setIsEmail] = React.useState<boolean>(false);
   const [isNickname, setIsNickname] = React.useState<boolean>(false);
+  const [isAddress, setIsAddress] = React.useState<boolean>(false);
 
   //오류메시지 상태저장
   const [IDMessage, setIDMessage] = useState<string>('');
@@ -37,6 +42,35 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     useState<string>('');
   const [emailMessage, setEmailMessage] = useState<string>('');
   const [nicknameMessage, setNicknameMessage] = useState<string>('');
+
+  // 주소 Geocoding
+  const geocoder = new kakao.maps.services.Geocoder();
+
+  // Router
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    userAddress &&
+      // 주소로 좌표를 검색합니다..
+      geocoder.addressSearch(
+        userAddress,
+        function (
+          result: {
+            y: string;
+            x: string;
+          }[],
+          status: any
+        ) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            console.log(coords);
+            setLat(coords.La);
+            setLng(coords.Ma);
+          }
+        }
+      );
+  }, [isAddress]);
 
   const onSellerClick = () => {
     setIsSeller(true);
@@ -50,7 +84,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   // 5자 ~ 12자 이어야 함
   const onIDChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const id = event.target.value; 
+      const id = event.target.value;
       setUserID(id);
       if (id.length >= 5 && id.length <= 12) {
         setIDMessage('올바른 ID 형식입니다 :)');
@@ -135,6 +169,19 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     []
   );
 
+  const SignUpClickHandle = () => {
+    alert(`${userID}
+    ${userPW}
+    ${userEmail}
+    ${userNickname}
+    ${userAddress}
+    ${lat}
+    ${lng}
+    회원가입이 완료되었습니다.
+    `);
+    navigate('/');
+  };
+
   const handle = {
     // 주소 검색 버튼 클릭 이벤트
     onAddressSearchClick: () => {
@@ -145,7 +192,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       console.log(`주소: ${data.address}, 우편번호: ${data.zonecode}`);
       setOpenPostcode(false);
       setUserAddress(data.address);
-      setUserZonecode(data.zonecode);
+      setIsAddress(true);
     },
   };
 
@@ -188,7 +235,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userPW'>
             <span className='label-text'>Password</span>
-             {userPW.length > 0 && (
+            {userPW.length > 0 && (
               <span className={`message ${isPW ? 'success' : 'error'}`}>
                 {passwordMessage}
               </span>
@@ -207,7 +254,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userPWConfirm'>
             <span className='label-text'>Password Confirm</span>
-             {userPWConfirm.length > 0 && (
+            {userPWConfirm.length > 0 && (
               <span className={`message ${isPWConfirm ? 'success' : 'error'}`}>
                 {passwordConfirmMessage}
               </span>
@@ -274,6 +321,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               className='input input-bordered w-full max-w-xl'
               value={userAddress}
               onClick={handle.onAddressSearchClick}
+              // onFocus={handle.onAddressSearchClick}
               required
             />
           </div>
@@ -289,7 +337,23 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             className='mt-2 border-4 '
           />
         )}
-        <button className='btn btn-block btn-success mt-8' >회원가입</button>
+        <button
+          className='btn btn-block btn-success mt-8'
+          onClick={SignUpClickHandle}
+          disabled={
+            isSeller
+              ? !(
+                  isID &&
+                  isPW &&
+                  isPWConfirm &&
+                  isEmail &&
+                  isNickname &&
+                  isAddress
+                )
+              : !(isID && isPW && isPWConfirm && isEmail && isNickname)
+          }>
+          회원가입
+        </button>
       </div>
     </div>
   );

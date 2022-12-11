@@ -6,6 +6,7 @@ import NotFound from '../routes/NotFound';
 import SignUp from '../routes/SignUp';
 import FindIDandPW from '../routes/FindIDandPW';
 import MyPage from '../routes/MyPage';
+import ReviewBoard from '../routes/ReviewBoard';
 
 
 const AppRouter = () => {
@@ -17,6 +18,7 @@ const AppRouter = () => {
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/findIDandPW' element={<FindIDandPW />}></Route>
         <Route path='/myPage' element={<MyPage />}></Route>
+        <Route path='/reviewBoard' element={<ReviewBoard />}></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
     </div>
