@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import Map from '../components/Home/Map';
-import ReviewBoard from '../components/Home/ReviewBoard/ReviewBoard';
+import ReviewBoard from '../components/Home/ReviewBoardPreview';
 import MBTILink from '../components/Home/MBTILink';
 
 type HomeProps = {};
