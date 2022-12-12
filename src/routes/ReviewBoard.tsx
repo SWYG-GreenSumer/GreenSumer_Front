@@ -24,7 +24,7 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
             {dumpData.map((e, i) => {
               if (i < 10) {
                 return (
-                  <tr>
+                  <tr key={e.product_id}>
                     <th>{e.product_id}</th>
                     <td>{e.hashtag}</td>
                     <td>{e.title}</td>
@@ -41,7 +41,10 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
       <div className='flex justify-center mt-10'>
         <div className='btn-group m-x-auto'>
           <button className='btn'>«</button>
-          <button className='btn'>Page 1</button>
+          <button className='btn'>1</button>
+          <button className='btn btn-active bg-success'>2</button>
+          <button className='btn'>3</button>
+          <button className='btn'>4</button>
           <button className='btn'>»</button>
         </div>
       </div>
