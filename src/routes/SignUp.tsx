@@ -197,16 +197,16 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   };
 
   return (
-    <div className='m-auto w-fit'>
+    <div className='m-auto w-[100%] sm:w-fit'>
       {/* Seller Consumer 버튼 */}
-      <div className='flex my-5'>
+      <div className='flex my-5 justify-between'>
         <button
-          className='btn btn-primary text-2xl font-bold text-white min-w-fit h-10 mr-60'
+          className='btn btn-primary text-2xl font-bold text-white w-[35%] sm:w-fit h-10 sm:mr-60'
           onClick={onSellerClick}>
           Seller
         </button>
         <button
-          className='btn btn-secondary text-2xl font-bold text-white min-w-fit  h-10'
+          className='btn btn-secondary text-2xl font-bold text-white w-[55%] sm:w-fit  h-10'
           onClick={onConsumerClick}>
           Consumer
         </button>
@@ -216,49 +216,55 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         <div className='form-control w-full'>
           <label className='label' htmlFor='userID'>
             <span className='label-text'>ID</span>
-            {userID.length > 0 && (
-              <span className={`message ${isID ? 'success' : 'error'}`}>
-                {IDMessage}
-              </span>
-            )}
           </label>
           <input
             id='userID'
             type='text'
-            placeholder='5 ~ 12글자 입력해주세요'
+            placeholder='ID를 입력해주세요'
             className='input input-bordered w-full max-w-xl'
             value={userID}
             onChange={onIDChange}
             required
           />
+          <label>
+            {userID.length > 0 && (
+              <span
+                className={`message text-xs ${
+                  isID ? 'text-secondary' : 'text-error'
+                }
+                `}>
+                {IDMessage}
+              </span>
+            )}
+          </label>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userPW'>
             <span className='label-text'>Password</span>
-            {userPW.length > 0 && (
-              <span className={`message ${isPW ? 'success' : 'error'}`}>
-                {passwordMessage}
-              </span>
-            )}
           </label>
           <input
             id='userPW'
             type='password'
-            placeholder='숫자 + 영문자 + 특수문자 조합 10 ~ 20자 입력해주세요'
+            placeholder='비밀번호를 입력해주세요'
             className='input input-bordered w-full max-w-xl'
             value={userPW}
             onChange={onPWChange}
             required
           />
+          <label>
+            {userPW.length > 0 && (
+              <span
+                className={`message text-xs ${
+                  isPW ? 'text-secondary' : 'text-error'
+                }`}>
+                {passwordMessage}
+              </span>
+            )}
+          </label>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userPWConfirm'>
             <span className='label-text'>Password Confirm</span>
-            {userPWConfirm.length > 0 && (
-              <span className={`message ${isPWConfirm ? 'success' : 'error'}`}>
-                {passwordConfirmMessage}
-              </span>
-            )}
           </label>
           <input
             id='userPWConfirm'
@@ -269,15 +275,20 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             onChange={onPWConfirmChange}
             required
           />
+          <label>
+            {userPWConfirm.length > 0 && (
+              <span
+                className={`message text-xs ${
+                  isPWConfirm ? 'text-secondary' : 'text-error'
+                }`}>
+                {passwordConfirmMessage}
+              </span>
+            )}
+          </label>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userEmail'>
             <span className='label-text'>이메일</span>
-            {userEmail.length > 0 && (
-              <span className={`message ${isEmail ? 'success' : 'error'}`}>
-                {emailMessage}
-              </span>
-            )}
           </label>
           <input
             id='userEmail'
@@ -288,25 +299,39 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             onChange={onEmailChange}
             required
           />
+          <label>
+            {userEmail.length > 0 && (
+              <span
+                className={`message text-xs ${
+                  isEmail ? 'text-secondary' : 'text-error'
+                }`}>
+                {emailMessage}
+              </span>
+            )}
+          </label>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userNickname'>
             <span className='label-text'>닉네임</span>
-            {userNickname.length > 0 && (
-              <span className={`message ${isNickname ? 'success' : 'error'}`}>
-                {nicknameMessage}
-              </span>
-            )}
           </label>
           <input
             id='userNickname'
             type='text'
-            placeholder='5글자 이상 입력해주세요'
+            placeholder='닉네임을 입력해주세요'
             className='input input-bordered w-full max-w-xl'
             value={userNickname}
             onChange={onNicknameChange}
             required
           />
+          <label>
+            {userNickname.length > 0 && (
+              <span
+                className={`message text-xs 
+                ${isNickname ? 'text-secondary' : 'text-error'}`}>
+                {nicknameMessage}
+              </span>
+            )}
+          </label>
         </div>
         {/* Seller 일 때, 지점 등록 가능 */}
         {isSeller && (
