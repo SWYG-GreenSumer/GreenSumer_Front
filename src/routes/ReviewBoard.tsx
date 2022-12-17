@@ -1,9 +1,14 @@
 import React, { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { dumpData } from '../dumpdata';
 
 type ReviewBoardProps = {};
 
 const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
+  const navigate = useNavigate();
+  const onPostClickHandle = () => {
+    navigate("/postReview");
+  }
   return (
     <div>
       <div className='overflow-x-auto'>
@@ -24,7 +29,7 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
             {dumpData.map((e, i) => {
               if (i < 10) {
                 return (
-                  <tr>
+                  <tr key={e.product_id}>
                     <th>{e.product_id}</th>
                     <td>{e.hashtag}</td>
                     <td>{e.title}</td>
@@ -38,13 +43,18 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
           </tbody>
         </table>
       </div>
-      <div className='flex justify-center mt-10'>
+      <div className='flex relative justify-center mt-10'>
         <div className='btn-group m-x-auto'>
-          <button className='btn'>«</button>
-          <button className='btn'>Page 1</button>
-          <button className='btn'>»</button>
+          <button className='btn btn-success'>«</button>
+          <button className='btn btn-success'>1</button>
+          <button className='btn btn-primary'>2</button>
+          <button className='btn btn-success'>3</button>
+          <button className='btn btn-success'>4</button>
+          <button className='btn btn-success'>»</button>
         </div>
+        <button className='btn btn-success absolute right-0' onClick={onPostClickHandle}>글쓰기</button>
       </div>
+      
     </div>
   );
 };

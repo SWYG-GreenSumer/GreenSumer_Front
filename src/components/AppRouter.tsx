@@ -7,7 +7,7 @@ import SignUp from '../routes/SignUp';
 import FindIDandPW from '../routes/FindIDandPW';
 import MyPage from '../routes/MyPage';
 import ReviewBoard from '../routes/ReviewBoard';
-
+import PostReview from '../routes/PostReview';
 
 const AppRouter = () => {
   return (
@@ -19,6 +19,7 @@ const AppRouter = () => {
         <Route path='/findIDandPW' element={<FindIDandPW />}></Route>
         <Route path='/myPage' element={<MyPage />}></Route>
         <Route path='/reviewBoard' element={<ReviewBoard />}></Route>
+        <Route path='/postReview' element={<PostReview />}></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
     </div>

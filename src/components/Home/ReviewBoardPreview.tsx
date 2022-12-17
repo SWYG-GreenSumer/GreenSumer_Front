@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { dumpData } from '../../../dumpdata';
+import { dumpData } from '../../dumpdata';
 
 type ReviewBoardProps = {};
 
@@ -21,7 +21,7 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
           {dumpData.map((e, i) => {
             if (i < 4) {
               return (
-                <p className='border-b-2 border-black flex-grow-0'>{e.title}</p>
+                <p key={e.product_id} className='border-b-2 border-black flex-grow-0'>{e.title}</p>
               );
             }
           })}
