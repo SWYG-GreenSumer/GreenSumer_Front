@@ -16,7 +16,7 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
             {location.pathname.includes('reviewBoard') && (
               <tr>
                 <th className='bg-success'>번호</th>
-                <th className='bg-success'></th>
+                <th className='bg-success'>종류</th>
                 <th className='bg-success'>제목</th>
                 <th className='bg-success'>글쓴이</th>
                 <th className='bg-success'>날짜</th>
