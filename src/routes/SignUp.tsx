@@ -1,6 +1,5 @@
 import React, {
   FunctionComponent,
-  ReactEventHandler,
   useCallback,
   useEffect,
   useState,
@@ -67,8 +66,8 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           if (status === kakao.maps.services.Status.OK) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
             console.log(coords);
-            setLat(coords.La);
-            setLng(coords.Ma);
+            setLat(`${coords.La}`);
+            setLng(`${coords.Ma}`);
           }
         }
       );
@@ -172,23 +171,54 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   );
 
   const SignUpClickHandle = () => {
-    alert(`${userID}
-    ${userPW}
-    ${userEmail}
-    ${userNickname}
-    ${userAddress}
-    ${lat}
-    ${lng}
-    회원가입이 완료되었습니다.
-    `);
+    const fetchSignUp = async () => {
+      const settings = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: userID,
+          password: userPW,
+          email: userEmail,
+          nickname: userNickname,
+          grade: isSeller ? 1 : 0,
+          address: isSeller ? userAddress : '',
+          lat: isSeller ? lat : '',
+          lng: isSeller ? lng : '',
+        }),
+      };
+
+      try {
+        const fetchResponse = await fetch(`/api/sign-up`, settings);
+        const data = await fetchResponse.json();
+        return data;
+      } catch (e) {
+        alert('회원가입 에러가 발생하였습니다. ' + e);
+        return e;
+      }
+    };
+
+    fetchSignUp();
+
+    // alert(`${userID}
+    // ${userPW}
+    // ${userEmail}
+    // ${userNickname}
+    // ${userAddress}
+    // ${lat}
+    // ${lng}
+    // 회원가입이 완료되었습니다.
+    // `);
     navigate('/');
   };
 
   // 이메일 인증 확인 버튼
   const isCertifiedEmailClickHandle = () => {
-    alert("이메일 인증이 확인되었습니다.")
+    alert('이메일 인증이 확인되었습니다.');
     setIsCertifiedEmail(true);
-  }
+  };
 
   const handle = {
     // 주소 검색 버튼 클릭 이벤트
@@ -322,7 +352,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           </label>
         </div>
         <div className='form-control w-full max-w-xl mt-[1rem]'>
-          <button className='btn btn-secondary text-white' onClick={isCertifiedEmailClickHandle}>인증 확인</button>
+          <button
+            className='btn btn-secondary text-white'
+            onClick={isCertifiedEmailClickHandle}>
+            인증 확인
+          </button>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userNickname'>
@@ -390,7 +424,14 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
                   isNickname &&
                   isAddress
                 )
-              : !(isID && isPW && isPWConfirm && isEmail && isCertifiedEmail && isNickname)
+              : !(
+                  isID &&
+                  isPW &&
+                  isPWConfirm &&
+                  isEmail &&
+                  isCertifiedEmail &&
+                  isNickname
+                )
           }>
           회원가입
         </button>
