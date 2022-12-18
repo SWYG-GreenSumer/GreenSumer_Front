@@ -32,6 +32,8 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [isPW, setIsPW] = React.useState<boolean>(false);
   const [isPWConfirm, setIsPWConfirm] = React.useState<boolean>(false);
   const [isEmail, setIsEmail] = React.useState<boolean>(false);
+  const [isCertifiedEmail, setIsCertifiedEmail] =
+    React.useState<boolean>(false);
   const [isNickname, setIsNickname] = React.useState<boolean>(false);
   const [isAddress, setIsAddress] = React.useState<boolean>(false);
 
@@ -182,6 +184,12 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     navigate('/');
   };
 
+  // 이메일 인증 확인 버튼
+  const isCertifiedEmailClickHandle = () => {
+    alert("이메일 인증이 확인되었습니다.")
+    setIsCertifiedEmail(true);
+  }
+
   const handle = {
     // 주소 검색 버튼 클릭 이벤트
     onAddressSearchClick: () => {
@@ -290,15 +298,18 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           <label className='label' htmlFor='userEmail'>
             <span className='label-text'>이메일</span>
           </label>
-          <input
-            id='userEmail'
-            type='text'
-            placeholder='이메일을 입력해주세요'
-            className='input input-bordered w-full max-w-xl'
-            value={userEmail}
-            onChange={onEmailChange}
-            required
-          />
+          <div className='flex justify-between'>
+            <input
+              id='userEmail'
+              type='text'
+              placeholder='이메일을 입력해주세요'
+              className='input input-bordered w-[80%] max-w-xl'
+              value={userEmail}
+              onChange={onEmailChange}
+              required
+            />
+            <button className='btn btn-primary'>인증 요청</button>
+          </div>
           <label>
             {userEmail.length > 0 && (
               <span
@@ -309,6 +320,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               </span>
             )}
           </label>
+        </div>
+        <div className='form-control w-full max-w-xl mt-[1rem]'>
+          <button className='btn btn-secondary text-white' onClick={isCertifiedEmailClickHandle}>인증 확인</button>
         </div>
         <div className='form-control w-full max-w-xl'>
           <label className='label' htmlFor='userNickname'>
@@ -372,10 +386,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
                   isPW &&
                   isPWConfirm &&
                   isEmail &&
+                  isCertifiedEmail &&
                   isNickname &&
                   isAddress
                 )
-              : !(isID && isPW && isPWConfirm && isEmail && isNickname)
+              : !(isID && isPW && isPWConfirm && isEmail && isCertifiedEmail && isNickname)
           }>
           회원가입
         </button>
