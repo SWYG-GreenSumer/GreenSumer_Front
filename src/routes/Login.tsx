@@ -15,7 +15,7 @@ const Login: FunctionComponent<LoginProps> = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userid: userID,
+          username: userID,
           password: userPW,
         }),
       };
