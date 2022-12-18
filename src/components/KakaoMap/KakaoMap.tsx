@@ -48,7 +48,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
   return (
     <div
       id='map'
-      className={`w-[${width}] h-[${height}] relative`}
+      className={`w-[${width}] h-[93.2vh] sm:h-[${height}] relative`}
       ref={mapRef}>
       {location.pathname.includes('findNearestWay') && <StoreDrawer />}
     </div>

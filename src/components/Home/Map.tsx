@@ -7,7 +7,7 @@ interface MapProps {}
 const Map: FunctionComponent<MapProps> = () => {
   const navigate = useNavigate();
   return (
-    <div className='h-fit lg:h-[32rem]'>
+    <div className='h-[37rem] lg:h-full'>
       <div className='card shadow-xl h-full'>
         <KakaoMap width='100%' height='32rem' />
 
