@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import DaumPostcodeEmbed from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
-const { kakao } = window as any;
+const { kakao } = window;
 
 interface SignUpProps {}
 
