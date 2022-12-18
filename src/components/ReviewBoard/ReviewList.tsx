@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { dumpData } from '../../dumpdata';
 
@@ -6,6 +6,20 @@ type ReviewListProps = {};
 
 const ReviewList: FunctionComponent<ReviewListProps> = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      const data = await fetch('/api/articles/news', {
+        method: 'GET',
+      });
+      const jsonData = await data.json();
+      console.log(jsonData)
+    //   setResult(jsonData.results);
+    };
+
+    fetchNews();
+  }, []);
+
   return (
     <div>
       <div className='overflow-x-auto'>
