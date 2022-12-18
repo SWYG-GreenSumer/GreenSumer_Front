@@ -1,18 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import { dumpData } from '../../dumpdata';
 
 type ReviewBoardProps = {};
 
 const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
-  const navigate = useNavigate();
-
-  const reviewBoardClickHandle = () => {
-    navigate('/reviewBoard');
-  };
 
   return (
-    <div className='h-fit cursor-pointer' onClick={reviewBoardClickHandle}>
+    <div className='h-fit cursor-pointer'>
       <div className='card sm:card-side bg-base-100 shadow-xl h-full'>
         <div className='card-body'>
           <h2 className='card-title border-y-2 border-black p-1 w-full flex justify-center'>
