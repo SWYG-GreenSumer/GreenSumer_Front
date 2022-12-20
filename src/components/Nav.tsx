@@ -97,7 +97,7 @@ const Nav: FunctionComponent<Props> = () => {
               <>
                 <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
                   <div className='w-10 rounded-full'>
-                    <img src='../public/img/anonymousProfile.svg' />
+                    <img src='/img/anonymousProfile.svg' />
                   </div>
                 </label>
                 <ul
