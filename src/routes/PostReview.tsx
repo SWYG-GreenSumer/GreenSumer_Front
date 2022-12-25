@@ -4,10 +4,10 @@ type PostReviewProps = {};
 
 const PostReview: FunctionComponent<PostReviewProps> = () => {
   return (
-    <div>
-      <div>후기 등록</div>
+    <div className='flex flex-col justify-between min-h-[60vh] h-full'>
+      <div className='font-bold text-3xl flex justify-center'>후기 등록</div>
       <div>
-        <div className='dropdown dropdown-hover'>
+        <div className='dropdown dropdown-hover mb-2 sm:mr-5 w-full sm:max-w-xs'>
           <input
             tabIndex={0}
             placeholder='카테고리'
@@ -34,15 +34,17 @@ const PostReview: FunctionComponent<PostReviewProps> = () => {
         <input
           type='text'
           placeholder='제목'
-          className='input input-bordered w-full max-w-xs'
+          className='input input-bordered w-full sm:max-w-xl'
         />
       </div>
       <textarea
-        className='textarea textarea-bordered resize-none w-full'        
+        className='textarea textarea-bordered resize-none w-full h-80'
         placeholder='20자 이상 입력하세요.'></textarea>
       <div>
         <div>사진 추가</div>
-        <button className='btn btn-success'>추가</button>
+        <div className='flex justify-end'>
+          <button className='btn btn-success'>추가</button>
+        </div>
       </div>
     </div>
   );
