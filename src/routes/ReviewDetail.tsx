@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { dumpData } from '../dumpdata';
+import { dumpData } from '../../public/json/dumpdata';
 
 type ReviewDetailProps = {};
 
