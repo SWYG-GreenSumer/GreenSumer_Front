@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { dumpData } from '../../dumpdata';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { dumpData } from '../../../public/json/dumpdata';
 
 type ReviewListProps = {};
 
 const ReviewList: FunctionComponent<ReviewListProps> = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -13,8 +14,8 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
         method: 'GET',
       });
       const jsonData = await data.json();
-      console.log(jsonData)
-    //   setResult(jsonData.results);
+      console.log(jsonData);
+      //   setResult(jsonData.results);
     };
 
     fetchNews();
@@ -45,7 +46,10 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
               if (location.pathname.includes('reviewBoard') && i < 10) {
                 if (i < 10) {
                   return (
-                    <tr key={e.product_id}>
+                    <tr
+                      key={e.product_id}
+                      className='cursor-pointer'
+                      onClick={() => navigate(`/reviewDetail/${e.product_id}`)}>
                       <th>{e.product_id}</th>
                       <td>{e.hashtag}</td>
                       <td>{e.title}</td>

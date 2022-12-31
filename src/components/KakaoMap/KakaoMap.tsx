@@ -1,10 +1,12 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react';
+import React, { FunctionComponent, ReactNode, RefObject, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import StoreDrawer from './StoreDrawer';
 
 type KakaoMapProps = {
   width: string;
   height: string;
+  children: ReactNode;
+
 };
 
 const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
@@ -30,7 +32,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
         let message = '<div style="padding:5px;">현위치</div>';
 
         // 마커와 인포윈도우를 표시합니다.
-        // displayMarker(locPosition, message);
+        displayMarker(locPosition, message);
       });
     }
   }, []);
@@ -49,8 +51,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
     <div
       id='map'
       className={`w-[${width}] h-[93.2vh] sm:h-[${height}] relative`}
-      ref={mapRef}>
-      {location.pathname.includes('findNearestWay') && <StoreDrawer />}
+      ref={mapRef}>      
     </div>
   );
 };

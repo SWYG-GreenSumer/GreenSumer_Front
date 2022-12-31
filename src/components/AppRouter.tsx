@@ -14,6 +14,8 @@ import MyPage from '../routes/MyPage';
 import ReviewBoard from '../routes/ReviewBoard';
 import PostReview from '../routes/PostReview';
 import FindNearestWay from '../routes/FindNearestWay';
+import ReviewDetail from '../routes/ReviewDetail';
+import MBTI from '../routes/MBTI';
 
 const AppRouter = () => {
   const location = useLocation();
@@ -33,6 +35,9 @@ const AppRouter = () => {
         <Route path='/reviewBoard' element={<ReviewBoard />}></Route>
         <Route path='/postReview' element={<PostReview />}></Route>
         <Route path='/findNearestWay' element={<FindNearestWay />}></Route>
+        <Route path='/reviewDetail/:id' element={<ReviewDetail />}></Route>
+        <Route path='/mbti' element={<MBTI />}></Route>
+        <Route path='/mbti/:id' element={<MBTI />}></Route>        
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
     </div>

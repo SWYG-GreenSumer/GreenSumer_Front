@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { dumpData } from '../../dumpdata';
+import { dumpData } from '../../../public/json/dumpdata';
 
 type ReviewBoardProps = {};
 
