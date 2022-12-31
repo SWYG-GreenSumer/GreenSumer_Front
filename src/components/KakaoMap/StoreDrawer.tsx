@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
-type StoreDrawerProps = {};
+type StoreDrawerProps = {
+  data: any;
+};
 
-const StoreDrawer: FunctionComponent<StoreDrawerProps> = () => {
+const StoreDrawer: FunctionComponent<StoreDrawerProps> = ({ data }) => {
   return (
     <div className='absolute right-0 top-0'>
       <div className='drawer drawer-mobile'>
@@ -19,12 +21,21 @@ const StoreDrawer: FunctionComponent<StoreDrawerProps> = () => {
           <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
           <ul className='menu p-4 w-80 bg-base-100 text-base-content'>
             {/* <!-- Sidebar content here --> */}
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
+            {data?.map(
+              (
+                e: {
+                  content: any;                 
+                },
+                index: React.Key | null | undefined
+              ) => {
+                console.log(e)
+                return (
+                  <li key={index}>
+                    <a className='text-black'>{e.content.props.children}</a>
+                  </li>
+                );
+              }
+            )}
           </ul>
         </div>
       </div>
