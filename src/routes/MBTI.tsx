@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { mbtiQuestionJSON } from "/json/mbtiQuestionJSON.js";
+import { mbtiQuestionJSON } from "../../public/json/mbtiQuestionJSON";
 
 type Props = {};
 
@@ -50,7 +50,7 @@ export default function MBTI({}: Props) {
             value={process}
             max="90"
           />
-          {mbtiQuestionJSON.map((e: { title: any; }) => e.title)}
+          {/* {mbtiQuestionJSON.map((e: { title: any; }) => e.title)} */}
         </>
       )}
     </div>
