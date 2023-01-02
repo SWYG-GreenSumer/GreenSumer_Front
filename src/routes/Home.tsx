@@ -20,7 +20,7 @@ const Home: FunctionComponent<HomeProps> = () => {
           <Map />
         </div>
         <div className='divider lg:divider-horizontal' />
-        <div className='h-[37rem] lg:w-1/2 justify-between card rounded-box'>
+        <div className=' h-full sm:h-[37rem] lg:w-1/2 justify-between card rounded-box'>
           <MBTILink />
           {/* <ReviewBoardPreview /> */}
           <div

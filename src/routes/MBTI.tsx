@@ -6,7 +6,7 @@ type Props = {};
 
 export default function MBTI({}: Props) {
   const navigate = useNavigate();
-  let { pageNumber } = useParams();
+  let { id } = useParams();
   // test 점수
   const [E, setE] = useState(0);
   const [I, setI] = useState(0);
@@ -16,19 +16,21 @@ export default function MBTI({}: Props) {
   const [J, setJ] = useState(0);
   // 진행도
   const [process, setProcess] = useState(0);
+  // 해당 페이지에 대한 질문
 
   useEffect(() => {
-    if (typeof pageNumber === "string") {
-      setProcess(+pageNumber * 10);
-    } else {
-      setProcess(10);
+    console.log(id);
+
+    if (typeof id === "string") {
+      // 다음 페이지로 이동할 때마다 process 10씩 증가
+      setProcess(+id * 10);
     }
-  }, [pageNumber]);
+  }, [id]);
 
   const increasePage = () => {
     // page + 1 로 이동
-    if (typeof pageNumber === "string") {
-      navigate(`/mbti/${+pageNumber + 1}`);
+    if (typeof id === "string") {
+      navigate(`/mbti/${+id + 1}`);
     } else {
       navigate(`/mbti/1`);
     }
@@ -36,21 +38,31 @@ export default function MBTI({}: Props) {
 
   return (
     <div>
-      {pageNumber === undefined ? (
+      {/* param이 없을 때 (시작 전 페이지) */}
+      {id === undefined ? (
         <div>
-          <p>{pageNumber}</p>
+          <p>{id}</p>
           <button className="btn w-full" onClick={increasePage}>
             테스트 시작
           </button>
         </div>
+      ) : /** param 중 result 포함할 때 (결과 페이지) */
+      id.includes("result") ? (
+        <></>
       ) : (
+        /** 테스트 중 페이지  */
         <>
           <progress
-            className="progress progress-accent w-56"
+            className="progress progress-primary w-56"
             value={process}
             max="90"
           />
-          {/* {mbtiQuestionJSON.map((e: { title: any; }) => e.title)} */}
+          <p>{mbtiQuestionJSON[+id].question}</p>
+          <button className="btn">전혀 그렇지 않다</button>
+          <button className="btn">그렇지 않다</button>
+          <button className="btn">보통이다</button>
+          <button className="btn">그렇다</button>
+          <button className="btn">매우 그렇다</button>
         </>
       )}
     </div>
