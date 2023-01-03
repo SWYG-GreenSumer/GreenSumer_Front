@@ -38,6 +38,7 @@ const AppRouter = () => {
         <Route path='/reviewDetail/:id' element={<ReviewDetail />}></Route>
         <Route path='/mbti' element={<MBTI />}></Route>
         <Route path='/mbti/:id' element={<MBTI />}></Route>        
+        <Route path='/mbti/result' element={<MBTI />}></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
     </div>
