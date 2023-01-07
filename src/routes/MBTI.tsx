@@ -16,7 +16,7 @@ export default function MBTI({}: Props) {
   const [P, setP] = useState(0);
   const [J, setJ] = useState(0);
   // 진행도
-  const [process, setProcess] = useState(0);  
+  const [process, setProcess] = useState(0);
 
   useEffect(() => {
     if (typeof id === 'string') {
@@ -27,20 +27,20 @@ export default function MBTI({}: Props) {
 
   const onNoClickHandle = () => {
     ScoreNo();
-    console.log(E, I, T, F, P, J)
+    console.log(E, I, T, F, P, J);
     increasePage();
   };
 
   const onMiddleClickHandle = () => {
     ScoreYes();
-    console.log(E, I, T, F, P, J)
+    console.log(E, I, T, F, P, J);
     increasePage();
   };
 
   const onYesClickHandle = () => {
     ScoreYes();
     ScoreNo();
-    console.log(E, I, T, F, P, J)
+    console.log(E, I, T, F, P, J);
     increasePage();
   };
 
@@ -105,33 +105,35 @@ export default function MBTI({}: Props) {
       ) : /** param 중 result 포함할 때 (결과 페이지) */
       location.pathname.includes('result') ? (
         <>
-        <div className='card'>결과 페이지 입니다.</div>
+          <div className='card'>결과 페이지 입니다.</div>
         </>
       ) : (
-        /** 테스트 중 페이지  */
-        <>
-          <progress
-            className='progress progress-primary w-56'
-            value={process}
-            max='90'
-          />
-          <p>{mbtiQuestionJSON[+id].question}</p>
-          <button className='btn' onClick={onNoClickHandle}>
-            전혀 그렇지 않다
-          </button>
-          <button className='btn' onClick={onNoClickHandle}>
-            그렇지 않다
-          </button>
-          <button className='btn' onClick={onMiddleClickHandle}>
-            보통이다
-          </button>
-          <button className='btn' onClick={onYesClickHandle}>
-            그렇다
-          </button>
-          <button className='btn' onClick={onYesClickHandle}>
-            매우 그렇다
-          </button>
-        </>
+        id !== undefined && (
+          /** 테스트 중 페이지  */
+          <>
+            <progress
+              className='progress progress-primary w-56'
+              value={process}
+              max='90'
+            />
+            <p>{mbtiQuestionJSON[+id].question}</p>
+            <button className='btn' onClick={onNoClickHandle}>
+              전혀 그렇지 않다
+            </button>
+            <button className='btn' onClick={onNoClickHandle}>
+              그렇지 않다
+            </button>
+            <button className='btn' onClick={onMiddleClickHandle}>
+              보통이다
+            </button>
+            <button className='btn' onClick={onYesClickHandle}>
+              그렇다
+            </button>
+            <button className='btn' onClick={onYesClickHandle}>
+              매우 그렇다
+            </button>
+          </>
+        )
       )}
     </div>
   );
