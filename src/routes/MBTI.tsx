@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { mbtiQuestionJSON } from '../../public/json/mbtiQuestionJSON';
+import { mbtiResultJSON } from '../../public/json/mbtiResultJSON';
 
 type Props = {};
+
+interface mbtiResultObject {
+  id: number;
+  mbti: string;
+  title: string;
+  content: string;
+}
 
 export default function MBTI({}: Props) {
   const navigate = useNavigate();
   const location = useLocation();
   let { id } = useParams();
   // test 점수
-  const [E, setE] = useState(0);
-  const [I, setI] = useState(0);
-  const [T, setT] = useState(0);
-  const [F, setF] = useState(0);
-  const [P, setP] = useState(0);
-  const [J, setJ] = useState(0);
+  const [E, setE] = useState<number>(0);
+  const [I, setI] = useState<number>(0);
+  const [T, setT] = useState<number>(0);
+  const [F, setF] = useState<number>(0);
+  const [P, setP] = useState<number>(0);
+  const [J, setJ] = useState<number>(0);
   // 진행도
-  const [process, setProcess] = useState(0);
+  const [process, setProcess] = useState<number>(0);
+  // 결과
+  const [result, setResult] = useState<mbtiResultObject>({
+    id: 0,
+    mbti: '',
+    title: '',
+    content: '',
+  });
 
   useEffect(() => {
     if (typeof id === 'string') {
@@ -52,6 +67,11 @@ export default function MBTI({}: Props) {
       navigate(`/mbti/${+id + 1}`);
       // 결과 페이지로 이동
     } else {
+      const resultMbti = `${E > I ? 'E' : 'I'}${T > F ? 'T' : 'F'}${
+        P > J ? 'P' : 'J'
+      }`;
+      const result = mbtiResultJSON.filter((e) => e.mbti === resultMbti)[0];
+      setResult(result);
       navigate(`/mbti/result`);
     }
   };
@@ -106,6 +126,10 @@ export default function MBTI({}: Props) {
       location.pathname.includes('result') ? (
         <>
           <div className='card'>결과 페이지 입니다.</div>
+          <div>
+            <p>{result.title}</p>
+            <p>{result.content}</p>
+          </div>
         </>
       ) : (
         id !== undefined && (

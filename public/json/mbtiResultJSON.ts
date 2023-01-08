@@ -1,4 +1,4 @@
-export const mbtiQuestionJSON = [
+export const mbtiResultJSON = [
     {
         // ETJ
         id: 0,
