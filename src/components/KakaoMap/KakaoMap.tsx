@@ -32,7 +32,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
         let message = '<div style="padding:5px;">현위치</div>';
 
         // 마커와 인포윈도우를 표시합니다.
-        displayMarker(locPosition, message);
+        // displayMarker(locPosition, message);
       });
     }
   }, []);
