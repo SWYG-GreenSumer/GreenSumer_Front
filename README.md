@@ -21,4 +21,4 @@ npx vite
 ```
 
 ## Sponsors
-SWYG <a href="https://www.swygbro.com/">https://www.swygbro.com/</a>
+- SWYG <a href="https://www.swygbro.com/">https://www.swygbro.com/</a>
