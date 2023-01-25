@@ -3,24 +3,25 @@ on:
   push:
     branches:
       - main
-jobs:
-  deploy:
+  jobs:
+  pierong:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Connect deploy key
+      - name: Connect repository
         uses: cloudtype-github-actions/connect@v1
         with:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           ghtoken: ${{ secrets.GHP_TOKEN }}
-      - name: Deploy
+          scope: greensumer
+      - name: Deploy to Cloudtype
         uses: cloudtype-github-actions/deploy@v1
         with:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           project: greensumer/greensumer
           stage: main
-          yaml: |
+          yaml: |-
             name: greensumer-front
             app: web
             options:
@@ -30,6 +31,5 @@ jobs:
               install: npm i
             context:
               git:
-                url: git@github.com:${{ github.repository }}.git
                 ref: ${{ github.ref }}
-              preset: react-vite
+                url: git@github.com:${{ github.repository }}.git
