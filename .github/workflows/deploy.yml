@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  jobs:
+jobs:
   pierong:
     runs-on: ubuntu-latest
     steps:
