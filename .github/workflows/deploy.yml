@@ -30,6 +30,6 @@ jobs:
               install: npm i
             context:
               git:
-                url: 99dlthdbs@gmail.com:${{ github.repository }}.git
+                url: git@github.com:${{ github.repository }}.git
                 ref: ${{ github.ref }}
               preset: react-vite
