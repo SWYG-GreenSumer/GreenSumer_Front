@@ -1,19 +1,43 @@
-import React, { FunctionComponent, ReactNode, RefObject, useEffect, useRef } from 'react';
+import React, {
+  FunctionComponent,  
+  useEffect,
+  useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import StoreDrawer from './StoreDrawer';
+import { MapMarker, Map, useMap } from 'react-kakao-maps-sdk';
 
 type KakaoMapProps = {
   width: string;
-  height: string;
-  children: ReactNode;
-
+  height: string;    
 };
 
-const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
+const KakaoMap: FunctionComponent<KakaoMapProps> = ({
+  width,
+  height,  
+}) => {
   const [lat, setLat] = React.useState<number>(33.55635);
   const [lng, setLng] = React.useState<number>(126.795841);
-  const mapRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
+
+  
+  const data = [
+    {
+      content: <div style={{ color: '#000' }}>강남역</div>,
+      latlng: { lat: 37.498095, lng: 127.02761 },
+    },
+    {
+      content: <div style={{ color: '#000' }}>서울시청</div>,
+      latlng: { lat: 37.541, lng: 126.986 },
+    },
+    {
+      content: <div style={{ color: '#000' }}>역삼역</div>,
+      latlng: { lat: 37.503325874722, lng: 127.04403462366 },
+    },
+    {
+      content: <div style={{ color: '#000' }}>선릉역</div>,
+      latlng: { lat: 	37.503085510654, lng: 127.048359211 },
+    },
+  ];
 
   useEffect(() => {
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
@@ -37,21 +61,36 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
     }
   }, []);
 
-  useEffect(() => {
-    const container = mapRef.current;
-    let options = {
-      center: new window.kakao.maps.LatLng(lat, lng),
-      level: 5,
-    };
+  const EventMarkerContainer = ({ position, content }: any) => {
+    const map = useMap();
+    const [isVisible, setIsVisible] = useState(false);
 
-    let map = new window.kakao.maps.Map(container, options);
-  }, [lat, lng]);
+    return (
+      <MapMarker
+        position={position} // 마커를 표시할 위치
+        // @ts-ignore
+        onClick={(marker) => map.panTo(marker.getPosition())}
+        onMouseOver={() => setIsVisible(true)}
+        onMouseOut={() => setIsVisible(false)}>
+        {isVisible && content}
+      </MapMarker>
+    );
+  };
 
   return (
-    <div
-      id='map'
-      className={`w-[${width}] h-[93.2vh] sm:h-[${height}] relative`}
-      ref={mapRef}>      
+    <div>
+      <Map
+        center={{ lat: lat, lng: lng }}
+        style={{ width: width, height: height, borderRadius: "var(--rounded-box, 1rem)" }}>
+        {data.map((value) => (
+          <EventMarkerContainer
+            key={`EventMarkerContainer-${value.latlng.lat}-${value.latlng.lng}`}
+            position={value.latlng}
+            content={value.content}
+          />
+        ))}
+      </Map>
+      {/* <StoreDrawer data={data} /> */}
     </div>
   );
 };
