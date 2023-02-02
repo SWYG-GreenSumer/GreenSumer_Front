@@ -6,8 +6,8 @@ type MBTILinkProps = {};
 const MBTILink: FunctionComponent<MBTILinkProps> = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-96 sm:h-60">
-      <div className="card sm:card-side bg-base-100 shadow-xl h-full">
+    <div className="h-96 sm:h-60 ">
+      <div className="card sm:card-side bg-secondary shadow-xl h-full">
         <figure>
           <img className="h-[90%]" src="/icon/SumBTI.svg" alt="MBTI Test" />
         </figure>

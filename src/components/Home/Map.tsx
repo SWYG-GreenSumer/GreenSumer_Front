@@ -11,7 +11,7 @@ const Map: FunctionComponent<MapProps> = () => {
   return (
     <div className='h-[37rem] lg:h-full'>
       <div className='card shadow-xl h-full'>
-        <KakaoMap width='100%' height='32rem' children={undefined} />
+        <KakaoMap width='100%' height='32rem' />
         <div className='card-body cursor-pointer'>
           <div className='pointer' onClick={() => navigate('/findNearestWay')}>
             가까운 매장 길 찾기 {'>>'}

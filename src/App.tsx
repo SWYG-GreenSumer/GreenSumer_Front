@@ -14,7 +14,7 @@ type AppProps = {};
 
 const App: FunctionComponent<AppProps> = () => {
   return (
-    <div className='h-full'>
+    <div className='h-full bg-[#FDFDFD]'>
       <Nav />
       {/* 여기에 글로벌-스타일-컴포넌트 위치 */}
       <GlobalStyle />
