@@ -15,8 +15,8 @@ const Nav: FunctionComponent<Props> = () => {
   };
 
   return (
-    <nav className='sticky top-0 bg-white z-10 w-4/5 m-auto'>
-      <div className='navbar relative text-neutral border-b-2 border-[#DEDEDE]'>
+    <nav className='sticky top-0 bg-white z-10 w-full m-auto'>
+      <div className='navbar relative w-4/5 m-auto text-neutral border-b-2 border-[#DEDEDE]'>
         {/* 좌 햄버거 아이콘 */}
         <div className='absolute'>
           <div className='dropdown'>
