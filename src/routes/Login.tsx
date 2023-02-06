@@ -36,7 +36,7 @@ const Login: FunctionComponent<LoginProps> = () => {
   return (
     <div className='LoginContainer h-fit'>
       <div className='Logo flex justify-center'>
-        <p className='font-bold italic text-secondary text-4xl'>
+        <p className='font-bold italic text-primary text-4xl'>
           Welcome to <br /> GreenSumer!
         </p>
       </div>
@@ -69,7 +69,7 @@ const Login: FunctionComponent<LoginProps> = () => {
           />
         </div>
         <div className='mt-8 w-full max-w-xl'>
-          <button className='btn btn-block max-w-xl' onClick={onLoginHandler}>
+          <button className='btn btn-block bg-primary border-primary text-white max-w-xl' onClick={onLoginHandler}>
             Enter!
           </button>
         </div>
