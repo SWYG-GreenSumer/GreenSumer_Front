@@ -28,7 +28,7 @@ const AppRouter = () => {
         className={`max-h-full min-h-[90vh] flex flex-col justify-center ${
           location.pathname.includes('findNearestWay')
             ? `m-0 w-full`
-            : `mb-10 mt-10 m-auto w-4/5`
+            : `mb-10 mt-10 m-auto w-[95%] sm:w-4/5`
         }`}>
         <Routes>
           <Route path='/' element={<Home />}></Route>
