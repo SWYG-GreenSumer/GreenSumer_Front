@@ -4,7 +4,6 @@ const Footer = () => {
   return (
     <footer className='sm:block justify-center hidden footer footer-center p-10 bg-primary text-base-100 flex-1'>
       <div>
-        <img src='/GreenSumerIcon.svg' alt='GreenSumer Icon' />
         <p className='font-bold'>
           GreenSumer Team. <br />          
           Prod. By. SWYG
