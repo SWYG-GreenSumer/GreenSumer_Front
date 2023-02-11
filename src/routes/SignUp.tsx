@@ -78,14 +78,6 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       );
   }, [isAddress]);
 
-  const onSellerClick = () => {
-    setIsSeller(true);
-  };
-
-  const onConsumerClick = () => {
-    setIsSeller(false);
-  };
-
   // ID 변경됐을 때 유효성 검사
   // 5자 ~ 12자 이어야 함
   const onIDChange = useCallback(
