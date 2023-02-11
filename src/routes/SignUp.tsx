@@ -7,6 +7,9 @@ import React, {
 } from 'react';
 import DaumPostcodeEmbed from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
+import BirthDay from '../components/SignUp/BirthDay';
+import BirthMonth from '../components/SignUp/BirthMonth';
+import BirthYear from '../components/SignUp/BirthYear';
 const { kakao } = window;
 
 interface SignUpProps {}
@@ -371,41 +374,63 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           </label>
         </div>
         {/* 생년월일 */}
-        <div className='form-control w-full '>
+        <div className='form-control w-full'>
           <label className='label' htmlFor='userBirthDate'>
             <span className='label-text'>생년월일</span>
           </label>
           <div className='flex justify-between items-center'>
-            <input
-              id='userBirthDate'
-              type='text'
-              placeholder='1995'
-              className='input input-bordered w-[29%]'
-              value={userBirthYear}
-              onChange={() => {}}
-              required
-            />
-            년
-            <input
-              id='userBirthDate'
-              type='text'
-              placeholder='12'
-              className='input input-bordered w-[29%]'
-              value={userBirthMonth}
-              onChange={() => {}}
-              required
-            />
-            월
-            <input
-              id='userBirthDate'
-              type='text'
-              placeholder='25'
-              className='input input-bordered w-[29%]'
-              value={userBirthDay}
-              onChange={() => {}}
-              required
-            />
-            일
+            <div className='dropdown w-full'>
+              <input
+                id='userBirthDate'
+                type='text'
+                placeholder='1995'
+                className='input input-bordered  w-2/3'
+                value={userBirthYear}
+                required
+              />
+              년
+              <ul
+                tabIndex={0}
+                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                <BirthYear setUserBirthYear={setUserBirthYear} />
+              </ul>
+            </div>
+            <div className='dropdown w-full'>
+              <input
+                id='userBirthDate'
+                type='text'
+                placeholder='12'
+                className='input input-bordered w-2/3'
+                value={userBirthMonth}
+                required
+              />
+              월
+              <ul
+                tabIndex={0}
+                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                <BirthMonth setUserBirthMonth={setUserBirthMonth} />
+              </ul>
+            </div>
+            <div className='dropdown w-full'>
+              <input
+                id='userBirthDate'
+                type='text'
+                placeholder='25'
+                className='input input-bordered w-2/3'
+                value={userBirthDay}
+                required
+              />
+              일
+              <ul
+                tabIndex={0}
+                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                <BirthDay
+                  birthMonth={userBirthMonth}
+                  birthYear={userBirthDay}
+                  setUserBirthDay={setUserBirthDay}
+                />
+              </ul>
+            </div>
           </div>
           <label>
             {/* {userNickname.length > 0 && (
