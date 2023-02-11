@@ -59,7 +59,7 @@ const Nav: FunctionComponent<Props> = () => {
         </div>
         <div className='absolute right-0 gap-2'>
           {/* 사용자 ID */}
-          <div className='text-primary flex-none sm:flex'>
+          <div className='text-primary flex-none hidden sm:flex'>
             USER ID
           </div>
           {/* 사용자 프로필 */}
