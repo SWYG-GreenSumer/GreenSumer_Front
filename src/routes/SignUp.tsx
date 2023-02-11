@@ -431,16 +431,13 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           <label className='label' htmlFor='userGender'>
             <span className='label-text'>성별</span>
           </label>
-          <div className='flex justify-around'>
-            <div className='flex'>
-              <p>여자</p>
-              <input type='radio' name='radio-1' className='ml-2 radio' checked />
-            </div>
-
-            <div className='flex'>
-              <p>남자</p>
-              <input type='radio' name='radio-1' className='ml-2 radio' />
-            </div>
+          <div className='flex justify-around btn-group'>
+            <button className='btn btn-secondary text-primary w-1/2'>
+              여자
+            </button>
+            <button className='btn btn-secondary text-primary w-1/2'>
+              남자
+            </button>
           </div>
           <label>
             {/* {userNickname.length > 0 && (
