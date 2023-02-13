@@ -81,7 +81,15 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
     <div>
       <Map
         center={{ lat: lat, lng: lng }}
-        style={{ width: width, height: height, borderRadius: "var(--rounded-box, 1rem)" }}>
+        style={
+          location.pathname === '/'
+            ? {
+                width: width,
+                height: height,
+                borderRadius: 'var(--rounded-box, 1rem)',
+              }
+            : { width: width, height: height }
+        }>
         {data.map((value) => (
           <EventMarkerContainer
             key={`EventMarkerContainer-${value.latlng.lat}-${value.latlng.lng}`}
