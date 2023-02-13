@@ -1,25 +1,18 @@
-import React, {
-  FunctionComponent,  
-  useEffect,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import StoreDrawer from './StoreDrawer';
 import { MapMarker, Map, useMap } from 'react-kakao-maps-sdk';
 
 type KakaoMapProps = {
   width: string;
-  height: string;    
+  height: string;
 };
 
-const KakaoMap: FunctionComponent<KakaoMapProps> = ({
-  width,
-  height,  
-}) => {
+const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
   const [lat, setLat] = React.useState<number>(33.55635);
   const [lng, setLng] = React.useState<number>(126.795841);
 
-  
+  const location = useLocation();
+
   const data = [
     {
       content: <div style={{ color: '#000' }}>강남역</div>,
@@ -35,7 +28,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
     },
     {
       content: <div style={{ color: '#000' }}>선릉역</div>,
-      latlng: { lat: 	37.503085510654, lng: 127.048359211 },
+      latlng: { lat: 37.503085510654, lng: 127.048359211 },
     },
   ];
 
@@ -49,14 +42,6 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
 
         setLat(lat);
         setLng(lng);
-
-        // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.
-        let locPosition = new window.kakao.maps.LatLng(lat, lng);
-        // 인포윈도우에 표시될 내용입니다
-        let message = '<div style="padding:5px;">현위치</div>';
-
-        // 마커와 인포윈도우를 표시합니다.
-        // displayMarker(locPosition, message);
       });
     }
   }, []);
@@ -97,8 +82,7 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
             content={value.content}
           />
         ))}
-      </Map>
-      {/* <StoreDrawer data={data} /> */}
+      </Map>      
     </div>
   );
 };
