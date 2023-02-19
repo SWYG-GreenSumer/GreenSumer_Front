@@ -1,44 +1,56 @@
 import React, { FunctionComponent } from 'react';
+import { storeDataJSON } from '../../public/json/storeDataJSON';
 
 type PostReviewProps = {};
 
 const PostReview: FunctionComponent<PostReviewProps> = () => {
   return (
     <div className='flex flex-col justify-between min-h-[60vh] h-full'>
-      <div className='font-bold text-3xl flex justify-center'>후기 등록</div>
       <div>
-        <div className='dropdown dropdown-hover mb-2 sm:mr-5 w-full sm:max-w-xs'>
+        <div className='relative'>
           <input
-            tabIndex={0}
-            placeholder='카테고리'
-            className='input input-bordered w-full max-w-xl cursor-pointer'
-            readOnly
+            type='text'
+            placeholder='제목'
+            className='w-full text-[20px] sm:text-[50px] border-b-[1px] border-divider mb-[20px] bg-inherit'
           />
-          <ul
-            tabIndex={0}
-            className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full'>
-            <li>
-              <a>주방 ex{')'} 천연수세미, 라텍스 고무장갑</a>
-            </li>
-            <li>
-              <a>욕실 ex{')'} 스트롱 고체치약</a>
-            </li>
-            <li>
-              <a>생활 ex{')'} 유기농 빨대 파우치</a>
-            </li>
-            <li>
-              <a>식품 ex{')'} 비건 마시멜로우 메이플형</a>
-            </li>
-          </ul>
+          <div className='w-[50%] sm:w-[40%] absolute top-0 right-0 flex justify-between sm:max-w-[13rem] sm:h-[75%] items-center'>
+            <div className='dropdown dropdown-hover dropdown-end w-[63%]'>
+              <div className='w-full  h-[30px] border-primary border-[1px] text-primary rounded flex justify-center items-center'>
+                가게 검색
+              </div>
+              <div className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[16rem] sm:w-[460px] flex flex-col items-center'>
+                <div className='w-[90%]'>
+                  <input
+                    type='text'
+                    placeholder='가게 검색하기'
+                    className='input w-full'
+                  />
+                </div>
+                <ul tabIndex={0} className='w-full'>
+                  {storeDataJSON.map(({ storeName, address }) => {
+                    return (
+                      <li className='w-full'>
+                        <a className='w-full'>
+                          <div className='w-full bg-zinc-300 rounded p-2 text-black'>
+                            <p>{storeName}</p>
+                            <p>{address}</p>
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  })}                
+                </ul>
+              </div>
+            </div>
+
+            <div className='w-[33%] h-[30px] bg-primary text-white rounded flex justify-center items-center'>
+              등록
+            </div>
+          </div>
         </div>
-        <input
-          type='text'
-          placeholder='제목'
-          className='input input-bordered w-full sm:max-w-xl'
-        />
       </div>
       <textarea
-        className='textarea textarea-bordered resize-none w-full h-80'
+        className='textarea bg-textarea placeholder:text-placeholder resize-none w-full h-80'
         placeholder='20자 이상 입력하세요.'></textarea>
       <div>
         <div>사진 추가</div>
