@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { itemsDataJSON } from '../../../public/json/itemsDataJSON';
+import { itemsDataJSON1 } from '../../../public/json/itemsDataJSON';
 import { storeDataJSON } from '../../../public/json/storeDataJSON';
 
 type ItemsDrawerProps = {};
@@ -26,7 +26,7 @@ const ItemsDrawer: FunctionComponent<ItemsDrawerProps> = () => {
           <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
           <ul className='menu p-4 w-80 h-[100vh] flex-nowrap overflow-auto bg-base-100 text-base-content'>
             {/* <!-- Sidebar content here --> */}
-            {itemsDataJSON.map(
+            {itemsDataJSON1.map(
               (
                 e: ItemsData,
                 index: React.Key,
