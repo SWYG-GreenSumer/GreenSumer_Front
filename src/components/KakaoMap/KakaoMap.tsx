@@ -1,18 +1,23 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MapMarker, Map, useMap } from 'react-kakao-maps-sdk';
+import { storeDataJSON } from '../../../public/json/storeDataJSON';
+import EventMarker from './EventMarker';
 
 type KakaoMapProps = {
   width: string;
   height: string;
+  lat: number;
+  lng: number;
 };
 
-const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
-  const [lat, setLat] = React.useState<number>(33.55635);
-  const [lng, setLng] = React.useState<number>(126.795841);
-
+const KakaoMap: FunctionComponent<KakaoMapProps> = ({
+  width,
+  height,
+  lat,
+  lng,
+}) => {
   const location = useLocation();
-
   const data = [
     {
       content: <div style={{ color: '#000' }}>강남역</div>,
@@ -31,20 +36,6 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
       latlng: { lat: 37.503085510654, lng: 127.048359211 },
     },
   ];
-
-  useEffect(() => {
-    // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
-    if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-      navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude; // 위도
-        let lng = position.coords.longitude; // 경도
-
-        setLat(lat);
-        setLng(lng);
-      });
-    }
-  }, []);
 
   const EventMarkerContainer = ({ position, content }: any) => {
     const map = useMap();
@@ -75,14 +66,14 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height }) => {
               }
             : { width: width, height: height }
         }>
-        {data.map((value) => (
+        {storeDataJSON.map((value) => (
           <EventMarkerContainer
-            key={`EventMarkerContainer-${value.latlng.lat}-${value.latlng.lng}`}
-            position={value.latlng}
-            content={value.content}
+            key={`EventMarkerContainer-${value.lat}-${value.lng}`}
+            position={{ lat: value.lat, lng: value.lng }}
+            content={<EventMarker storeName={value.storeName} />}
           />
         ))}
-      </Map>      
+      </Map>
     </div>
   );
 };
