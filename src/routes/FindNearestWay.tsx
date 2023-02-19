@@ -1,10 +1,13 @@
 import { FunctionComponent } from 'react';
 import StoreDrawer from '../components/KakaoMap/StoreDrawer';
 import KakaoMap from '../components/KakaoMap/KakaoMap';
+import { useLocation } from 'react-router-dom';
+import ItemsDrawer from '../components/KakaoMap/ItemsDrawer';
 
 type FindNearestWayProps = {};
 
 const FindNearestWay: FunctionComponent<FindNearestWayProps> = () => {
+  const location = useLocation();
   const data = [
     {
       content: <div style={{ color: '#000' }}>강남역</div>,
@@ -26,7 +29,11 @@ const FindNearestWay: FunctionComponent<FindNearestWayProps> = () => {
   return (
     <div>
       <KakaoMap width={'100%'} height={'97vh'} />
-      <StoreDrawer data={data} />
+      {location.pathname === '/findNearestWay' ? (
+        <StoreDrawer />
+      ) : (
+        <ItemsDrawer />
+      )}
     </div>
   );
 };

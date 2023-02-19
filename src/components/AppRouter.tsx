@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter as Router,
   Route,
@@ -39,6 +38,9 @@ const AppRouter = () => {
           <Route path='/reviewBoard' element={<ReviewBoard />}></Route>
           <Route path='/postReview' element={<PostReview />}></Route>
           <Route path='/findNearestWay' element={<FindNearestWay />}></Route>
+          <Route
+            path='/findNearestWay/:id'
+            element={<FindNearestWay />}></Route>
           <Route path='/reviewDetail/:id' element={<ReviewDetail />}></Route>
           <Route path='/mbti' element={<MBTI />}></Route>
           <Route path='/mbti/:id' element={<MBTI />}></Route>
@@ -46,7 +48,7 @@ const AppRouter = () => {
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </div>
-        {!location.pathname.includes('findNearestWay') && <Footer />}
+      {!location.pathname.includes('findNearestWay') && <Footer />}
     </>
   );
 };
