@@ -50,8 +50,7 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
                       key={e.product_id}
                       className='cursor-pointer'
                       onClick={() => navigate(`/reviewDetail/${e.product_id}`)}>
-                      <th>{e.product_id}</th>
-                      <td>{e.hashtag}</td>
+                      <th>{e.product_id}</th>                      
                       <td>{e.title}</td>
                       <td>{e.nickname}</td>
                       <td>{e.createdAt}</td>
