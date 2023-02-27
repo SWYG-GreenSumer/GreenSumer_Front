@@ -29,5 +29,5 @@
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app"
 }
