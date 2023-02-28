@@ -1,36 +1,49 @@
+import axios from 'axios';
 import React, { FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
-interface LoginProps {}
+import { Link, useNavigate } from 'react-router-dom';
+interface LoginProps { }
 
 const Login: FunctionComponent<LoginProps> = () => {
+  const navigate = useNavigate();
   const [userID, setUserID] = React.useState<string>('');
   const [userPW, setUserPW] = React.useState<string>('');
 
   const onLoginHandler = () => {
-    const fetchLogin = async () => {
-      const settings = {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: userID,
-          password: userPW,
-        }),
-      };
+    // const fetchLogin = async () => {
+    //   const settings = {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       username: userID,
+    //       password: userPW,
+    //     }),
+    //   };
 
-      try {
-        const fetchResponse = await fetch(`/api/login`, settings);
-        const data = await fetchResponse.json();
-        return data;
-      } catch (e) {
-        alert('로그인 에러가 발생하였습니다. ' + e);
-        return e;
-      }
+    //   try {
+    //     const fetchResponse = await fetch(`https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app/api/users/login`, settings);
+    //     const data = await fetchResponse.json();
+    //     return data;
+    //   } catch (e) {
+    //     alert('로그인 에러가 발생하였습니다. ' + e);
+    //     return e;
+    //   }
+    // };
+
+    // fetchLogin();
+
+    let body = {
+      username: userID,
+      password: userPW,
     };
 
-    fetchLogin();
+    axios.post('/api/users/login', body).then((res) => {
+      console.log(res.data);
+    });
+
+    navigate('/');
   };
 
   return (
@@ -69,7 +82,9 @@ const Login: FunctionComponent<LoginProps> = () => {
           />
         </div>
         <div className='mt-8 w-full max-w-xl'>
-          <button className='btn btn-block bg-primary border-primary text-white max-w-xl' onClick={onLoginHandler}>
+          <button
+            className='btn btn-block bg-primary border-primary text-white max-w-xl'
+            onClick={onLoginHandler}>
             Enter!
           </button>
         </div>
