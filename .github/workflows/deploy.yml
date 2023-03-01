@@ -12,13 +12,13 @@ jobs:
       - name: Connect repository
         uses: cloudtype-github-actions/connect@v1
         with:
-          token: ${{ secrets.CLOUDTYPE_TOKEN }}
-          ghtoken: ${{ secrets.GHP_TOKEN }}
+          token: ${{ secrets.CLOUDTYPE_TOKEN1 }}
+          ghtoken: ${{ secrets.GHP_TOKEN1 }}
           scope: greensumer
       - name: Deploy to Cloudtype
         uses: cloudtype-github-actions/deploy@v1
         with:
-          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          token: ${{ secrets.CLOUDTYPE_TOKEN1 }}
           project: greensumer/greensumer
           stage: main
           yaml: |-
