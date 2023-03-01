@@ -1,6 +1,7 @@
 import AppRouter from './components/AppRouter';
 import { GlobalStyle } from './global-style';
 import { FunctionComponent } from 'react';
+import axios from 'axios';
 
 declare global {
   interface Window {
@@ -9,6 +10,10 @@ declare global {
 }
 
 type AppProps = {};
+
+axios.defaults.baseURL = 'http://localhost:8080';
+
+axios.defaults.withCredentials = true;
 
 const App: FunctionComponent<AppProps> = () => {  
   return (
