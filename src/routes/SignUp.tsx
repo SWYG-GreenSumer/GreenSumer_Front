@@ -523,11 +523,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               isPW &&
               isPWConfirm &&
               isEmail &&
-              isCertifiedEmail &&
-              isNickname &&
-              isAddress
+              
+              isNickname 
             )
-          }>
+          }
+        >
           회원가입
         </button>
       </div>
