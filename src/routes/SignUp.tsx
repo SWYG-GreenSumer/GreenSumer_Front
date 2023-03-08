@@ -463,59 +463,70 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               </ul>
             </div>
           </div>
-          <label>
-            {/* {userNickname.length > 0 && (
-              <span
-                className={`message text-xs 
-                ${isNickname ? "text-secondary" : "text-error"}`}
-              >
-                {nicknameMessage}
-              </span>
-            )} */}
-          </label>
+          <label></label>
         </div>
         {/* 성별 */}
-        <div className='form-control w-full '>
-          <label className='label' htmlFor='userGender'>
-            <span className='label-text'>성별</span>
+        <div className="form-control w-full ">
+          <label className="label" htmlFor="userGender">
+            <span className="label-text">성별</span>
           </label>
-          <div className='flex justify-around btn-group'>
-            <button className='btn btn-secondary text-primary w-1/2'>
+          <div className="flex justify-around btn-group">
+            <button
+              className="btn btn-secondary text-primary w-1/2"
+              onClick={onClickFemaleButtonHandler}
+            >
               여자
             </button>
-            <button className='btn btn-secondary text-primary w-1/2'>
+            <button
+              className="btn btn-secondary text-primary w-1/2"
+              onClick={onClickMaleButtonHandler}
+            >
               남자
             </button>
           </div>
-          <label>            
-          </label>
+          <label></label>
         </div>
         {/* 전화번호 */}
-        {/* <div className='form-control w-full '>
-          <label className='label' htmlFor='userPhoneNumber'>
-            <span className='label-text'>전화번호</span>
+        <div className="form-control w-full">
+          <label className="label" htmlFor="userPhoneNumber">
+            <span className="label-text">전화번호</span>
           </label>
-          <input
-            id='userPhoneNumber'
-            type='text'
-            placeholder='전화번호을 입력해주세요'
-            className='input input-bordered w-full '
-            value={userPhoneNumber}
-            onChange={onPhoneNumberChange}
-            required
-          />
-          <label>
-            {userPhoneNumber.length > 0 && (
-              <span
-                className={`message text-xs 
-                ${isPhoneNumber ? 'text-secondary' : 'text-error'}`}>
-                {phoneNumberMessage}
-              </span>
-            )}
-          </label>
-        </div> */}
+          <div className="flex justify-between items-center">
+            <input
+              id="userPhoneNumber"
+              type="number"
+              placeholder="010"
+              className="input input-bordered  w-2/3"
+              value={userPhoneAreaCode}
+              onChange={onChangeUserPhoneAreaCodeInputHandler}
+              required
+            />
+            -
+            <input
+              id="userPhoneNumber"
+              type="text"
+              placeholder="0000"
+              className="input input-bordered w-2/3"
+              value={userPhoneExchangeCode}
+              onChange={onChangeUserPhoneExchangeCodeInputHandler}
+              required
+            />
+            -
+            <input
+              id="userPhoneNumber"
+              type="text"
+              placeholder="0000"
+              className="input input-bordered w-2/3"
+              value={userPhoneSubscriberNumber}
+              onChange={onchangeUserPhoneSubscriberNumberInputHandler}
+              required
+            />
+          </div>
+
+          <label></label>
+        </div>
         <button
-          className='btn btn-block btn-success mt-8'
+          className="btn btn-block btn-success mt-8"
           onClick={SignUpClickHandle}
           disabled={
             !(
