@@ -92,10 +92,10 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       const id = event.target.value;
       setUserID(id);
       if (id.length >= 5 && id.length <= 12) {
-        setIDMessage('올바른 ID 형식입니다 :)');
+        setIDMessage("올바른 ID 형식입니다 :)");
         setIsID(true);
       } else {
-        setIDMessage('5글자 이상 12글자 이하로 입력해주세요.');
+        setIDMessage("5글자 이상 12글자 이하로 입력해주세요.");
         setIsID(false);
       }
     },
@@ -111,10 +111,10 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
 
       if (passwordRegex.test(currentPassword)) {
         setIsPW(true);
-        setPasswordMessage('안전한 비밀번호입니다 :)');
+        setPasswordMessage("안전한 비밀번호입니다 :)");
       } else {
         setPasswordMessage(
-          '숫자 + 영문자 + 특수문자 조합으로 10자리 이상 20자리 이하 입력해주세요.'
+          "숫자 + 영문자 + 특수문자 조합으로 10자리 이상 20자리 이하 입력해주세요."
         );
         setIsPW(false);
       }
@@ -128,11 +128,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       setUserPWConfirm(currentPasswordConfirm);
 
       if (currentPasswordConfirm === userPW) {
-        setPasswordConfirmMessage('비밀번호가 일치합니다 :)');
+        setPasswordConfirmMessage("비밀번호가 일치합니다 :)");
         setIsPWConfirm(true);
       } else {
         setPasswordConfirmMessage(
-          '비밀번호가 일치하지 않습니다. 다시 입력해주세요.'
+          "비밀번호가 일치하지 않습니다. 다시 입력해주세요."
         );
         setIsPWConfirm(false);
       }
@@ -148,10 +148,10 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       setUserEmail(emailCurrent);
 
       if (emailRegex.test(emailCurrent)) {
-        setEmailMessage('올바른 이메일 형식입니다 : )');
+        setEmailMessage("올바른 이메일 형식입니다 : )");
         setIsEmail(true);
       } else {
-        setEmailMessage('이메일 형식이 틀렸습니다. 다시 입력해주세요.');
+        setEmailMessage("이메일 형식이 틀렸습니다. 다시 입력해주세요.");
         setIsEmail(false);
       }
     },
@@ -165,10 +165,10 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
 
       if (nickname.length >= 5) {
         setIsNickname(true);
-        setNicknameMessage('올바른 닉네임 형식입니다 :)');
+        setNicknameMessage("올바른 닉네임 형식입니다 :)");
       } else {
         setIsNickname(false);
-        setNicknameMessage('닉네임의 길이를 확인해주세요.');
+        setNicknameMessage("닉네임의 길이를 확인해주세요.");
       }
     },
     []
@@ -258,23 +258,24 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userID.length > 0 && (
               <span
                 className={`message text-xs ${
-                  isID ? 'text-secondary' : 'text-error'
+                  isID ? "text-secondary" : "text-error"
                 }
-                `}>
+                `}
+              >
                 {IDMessage}
               </span>
             )}
           </label>
         </div>
-        <div className='form-control w-full '>
-          <label className='label' htmlFor='userPW'>
-            <span className='label-text'>Password</span>
+        <div className="form-control w-full ">
+          <label className="label" htmlFor="userPW">
+            <span className="label-text">Password</span>
           </label>
           <input
-            id='userPW'
-            type='password'
-            placeholder='비밀번호를 입력해주세요'
-            className='input input-bordered w-full '
+            id="userPW"
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
+            className="input input-bordered w-full "
             value={userPW}
             onChange={onPWChange}
             required
@@ -283,22 +284,23 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userPW.length > 0 && (
               <span
                 className={`message text-xs ${
-                  isPW ? 'text-secondary' : 'text-error'
-                }`}>
+                  isPW ? "text-secondary" : "text-error"
+                }`}
+              >
                 {passwordMessage}
               </span>
             )}
           </label>
         </div>
-        <div className='form-control w-full '>
-          <label className='label' htmlFor='userPWConfirm'>
-            <span className='label-text'>Password Confirm</span>
+        <div className="form-control w-full ">
+          <label className="label" htmlFor="userPWConfirm">
+            <span className="label-text">Password Confirm</span>
           </label>
           <input
-            id='userPWConfirm'
-            type='password'
-            placeholder='비밀번호 확인를 입력해주세요'
-            className='input input-bordered w-full '
+            id="userPWConfirm"
+            type="password"
+            placeholder="비밀번호 확인를 입력해주세요"
+            className="input input-bordered w-full "
             value={userPWConfirm}
             onChange={onPWConfirmChange}
             required
@@ -307,61 +309,63 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userPWConfirm.length > 0 && (
               <span
                 className={`message text-xs ${
-                  isPWConfirm ? 'text-secondary' : 'text-error'
-                }`}>
+                  isPWConfirm ? "text-secondary" : "text-error"
+                }`}
+              >
                 {passwordConfirmMessage}
               </span>
             )}
           </label>
         </div>
-        <div className='form-control w-full '>
-          <label className='label' htmlFor='userEmail'>
-            <span className='label-text'>이메일</span>
+        <div className="form-control w-full ">
+          <label className="label" htmlFor="userEmail">
+            <span className="label-text">이메일</span>
           </label>
-          <div className='flex justify-between'>
+          <div className="flex justify-between">
             <input
-              id='userEmail'
-              type='text'
-              placeholder='이메일을 입력해주세요'
-              className='input input-bordered w-[80%] '
+              id="userEmail"
+              type="text"
+              placeholder="이메일을 입력해주세요"
+              className="input input-bordered w-[80%] "
               value={userEmail}
               onChange={onEmailChange}
               required
             />
-            <button className='btn btn-primary'>인증 요청</button>
+            <button className="btn btn-primary">인증 요청</button>
           </div>
           <label>
             {userEmail.length > 0 && (
               <span
                 className={`message text-xs ${
-                  isEmail ? 'text-secondary' : 'text-error'
-                }`}>
+                  isEmail ? "text-secondary" : "text-error"
+                }`}
+              >
                 {emailMessage}
               </span>
             )}
           </label>
         </div>
-        <div className='flex justify-between mt-[1rem]'>
+        <div className="flex justify-between mt-[1rem]">
           <input
-            id='userEmail'
-            type='text'
-            placeholder='인증번호를 입력해주세요'
-            className='input input-bordered w-[80%] '
+            id="userEmail"
+            type="text"
+            placeholder="인증번호를 입력해주세요"
+            className="input input-bordered w-[80%] "
             value={certifiedEmailCode}
             onChange={(e) => setCertifiedEmailCode(e.target.value)}
             required
           />
-          <button className='btn btn-secondary text-white'>인증 확인</button>
+          <button className="btn btn-secondary text-white">인증 확인</button>
         </div>
-        <div className='form-control w-full'>
-          <label className='label' htmlFor='userNickname'>
-            <span className='label-text'>닉네임</span>
+        <div className="form-control w-full">
+          <label className="label" htmlFor="userNickname">
+            <span className="label-text">닉네임</span>
           </label>
           <input
-            id='userNickname'
-            type='text'
-            placeholder='닉네임을 입력해주세요'
-            className='input input-bordered w-full '
+            id="userNickname"
+            type="text"
+            placeholder="닉네임을 입력해주세요"
+            className="input input-bordered w-full "
             value={userNickname}
             onChange={onNicknameChange}
             required
@@ -370,21 +374,22 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userNickname.length > 0 && (
               <span
                 className={`message text-xs 
-                ${isNickname ? 'text-secondary' : 'text-error'}`}>
+                ${isNickname ? "text-secondary" : "text-error"}`}
+              >
                 {nicknameMessage}
               </span>
             )}
           </label>
         </div>
-        <div className='form-control w-full'>
-          <label className='label' htmlFor='userNickname'>
-            <span className='label-text'>이름</span>
+        <div className="form-control w-full">
+          <label className="label" htmlFor="userNickname">
+            <span className="label-text">이름</span>
           </label>
           <input
-            id='userName'
-            type='text'
-            placeholder='이름을 입력해주세요'
-            className='input input-bordered w-full '
+            id="userName"
+            type="text"
+            placeholder="이름을 입력해주세요"
+            className="input input-bordered w-full "
             value={userName}
             onChange={onNameChange}
             required
