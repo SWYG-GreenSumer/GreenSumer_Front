@@ -398,63 +398,67 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userNickname.length > 0 && (
               <span
                 className={`message text-xs 
-                ${isNickname ? 'text-secondary' : 'text-error'}`}>
+                ${isNickname ? "text-secondary" : "text-error"}`}
+              >
                 {nicknameMessage}
               </span>
             )}
           </label>
         </div>
         {/* 생년월일 */}
-        <div className='form-control w-full'>
-          <label className='label' htmlFor='userBirthDate'>
-            <span className='label-text'>생년월일</span>
+        <div className="form-control w-full">
+          <label className="label" htmlFor="userPhoneNumber">
+            <span className="label-text">생년월일</span>
           </label>
-          <div className='flex justify-between items-center'>
-            <div className='dropdown w-full'>
+          <div className="flex justify-between items-center">
+            <div className="dropdown w-full">
               <input
-                id='userBirthDate'
-                type='text'
-                placeholder='1995'
-                className='input input-bordered  w-2/3'
+                id="userPhoneNumber"
+                type="text"
+                placeholder="1995"
+                className="input input-bordered  w-2/3"
                 value={userBirthYear}
                 required
               />
               년
               <ul
                 tabIndex={0}
-                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto"
+              >
                 <BirthYear setUserBirthYear={setUserBirthYear} />
               </ul>
             </div>
-            <div className='dropdown w-full'>
+            <div className="dropdown w-full">
               <input
-                id='userBirthDate'
-                type='text'
-                placeholder='12'
-                className='input input-bordered w-2/3'
+                id="userPhoneNumber"
+                type="text"
+                placeholder="12"
+                className="input input-bordered w-2/3"
                 value={userBirthMonth}
                 required
               />
               월
               <ul
                 tabIndex={0}
-                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto"
+              >
                 <BirthMonth setUserBirthMonth={setUserBirthMonth} />
               </ul>
             </div>
-            <div className='dropdown w-full'>
+            <div className="dropdown w-full">
               <input
-                id='userBirthDate'
-                type='text'
-                placeholder='25'
-                className='input input-bordered w-2/3'
+                id="userPhoneNumber"
+                type="text"
+                placeholder="25"
+                className="input input-bordered w-2/3"
                 value={userBirthDay}
                 required
               />
               일
               <ul
                 tabIndex={0}
-                className='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto'>
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-[200px] overflow-auto"
+              >
                 <BirthDay
                   birthMonth={userBirthMonth}
                   birthYear={userBirthDay}
