@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {
   FunctionComponent,
   ReactEventHandler,
@@ -5,7 +6,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import DaumPostcodeEmbed from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
 import BirthDay from '../components/SignUp/BirthDay';
 import BirthMonth from '../components/SignUp/BirthMonth';
@@ -31,6 +31,8 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [userBirthYear, setUserBirthYear] = useState<string>('');
   const [userBirthMonth, setUserBirthMonth] = useState<string>('');
   const [userBirthDay, setUserBirthDay] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+  const [userPhoneNumber, setUserPhoneNumber] = useState<string>('');
 
   const [lat, setLat] = useState<string>('');
   const [lng, setLng] = useState<string>('');
@@ -43,6 +45,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [isCertifiedEmail, setIsCertifiedEmail] = useState<boolean>(false);
   const [isNickname, setIsNickname] = useState<boolean>(false);
   const [isAddress, setIsAddress] = useState<boolean>(false);
+  const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false);
 
   //오류메시지 상태저장
   const [IDMessage, setIDMessage] = useState<string>('');
@@ -51,6 +54,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     useState<string>('');
   const [emailMessage, setEmailMessage] = useState<string>('');
   const [nicknameMessage, setNicknameMessage] = useState<string>('');
+  const [phoneNumberMessage, setPhoneNumberMessage] = useState<string>('');
 
   // 주소 Geocoding
   const geocoder = new kakao.maps.services.Geocoder();
@@ -170,48 +174,47 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     []
   );
 
-  const SignUpClickHandle = () => {
-    const fetchSignUp = async () => {
-      const settings = {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: userID,
-          password: userPW,
-          email: userEmail,
-          nickname: userNickname,
-          grade: isSeller ? 1 : 0,
-          address: isSeller ? userAddress : '',
-          lat: isSeller ? lat : '',
-          lng: isSeller ? lng : '',
-        }),
-      };
+  const onNameChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const name = event.target.value;
+      setUserName(name);
+    },
+    []
+  );
 
-      try {
-        const fetchResponse = await fetch(`/api/sign-up`, settings);
-        const data = await fetchResponse.json();
-        return data;
-      } catch (e) {
-        alert('회원가입 에러가 발생하였습니다. ' + e);
-        return e;
+  const onPhoneNumberChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const phoneNumber = event.target.value;
+      setUserPhoneNumber(phoneNumber);
+
+      if (phoneNumber.length < 13) {
+        setPhoneNumberMessage('올바른 휴대폰 번호가 아닙니다.');
+        setIsPhoneNumber(false);
+      } else {
+        setPhoneNumberMessage('올바른 휴대폰 번호입니다.');
+        setIsPhoneNumber(true);
       }
-    };
+    },
+    []
+  );
 
-    fetchSignUp();
-
-    // alert(`${userID}
-    // ${userPW}
-    // ${userEmail}
-    // ${userNickname}
-    // ${userAddress}
-    // ${lat}
-    // ${lng}
-    // 회원가입이 완료되었습니다.
-    // `);
-    navigate('/');
+  const SignUpClickHandle = () => {
+    axios
+      .post('/api/users/sign-up/', {
+        username: userID,
+        password: userPW,
+        name: userName,
+        birth: `${userBirthYear}-${userBirthMonth}-${userBirthDay}`,
+        nickname: userNickname,
+        email: userEmail,
+        phone: '010-1234-1234',
+        gender: 1,
+      })
+      .then(({ data }) => {
+        console.log(data);
+        navigate('/');
+      })
+      .catch((err) => console.log(err));
   };
 
   // 이메일 인증 확인 버튼
@@ -350,7 +353,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           />
           <button className='btn btn-secondary text-white'>인증 확인</button>
         </div>
-        <div className='form-control w-full '>
+        <div className='form-control w-full'>
           <label className='label' htmlFor='userNickname'>
             <span className='label-text'>닉네임</span>
           </label>
@@ -361,6 +364,29 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             className='input input-bordered w-full '
             value={userNickname}
             onChange={onNicknameChange}
+            required
+          />
+          <label>
+            {userNickname.length > 0 && (
+              <span
+                className={`message text-xs 
+                ${isNickname ? 'text-secondary' : 'text-error'}`}>
+                {nicknameMessage}
+              </span>
+            )}
+          </label>
+        </div>
+        <div className='form-control w-full'>
+          <label className='label' htmlFor='userNickname'>
+            <span className='label-text'>이름</span>
+          </label>
+          <input
+            id='userName'
+            type='text'
+            placeholder='이름을 입력해주세요'
+            className='input input-bordered w-full '
+            value={userName}
+            onChange={onNameChange}
             required
           />
           <label>
@@ -456,19 +482,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
               남자
             </button>
           </div>
-          <label>
-            {/* {userNickname.length > 0 && (
-              <span
-                className={`message text-xs 
-                ${isNickname ? "text-secondary" : "text-error"}`}
-              >
-                {nicknameMessage}
-              </span>
-            )} */}
+          <label>            
           </label>
         </div>
         {/* 전화번호 */}
-        <div className='form-control w-full '>
+        {/* <div className='form-control w-full '>
           <label className='label' htmlFor='userPhoneNumber'>
             <span className='label-text'>전화번호</span>
           </label>
@@ -477,21 +495,20 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             type='text'
             placeholder='전화번호을 입력해주세요'
             className='input input-bordered w-full '
-            // value={userPhoneNumber}
-            // onChange={onNicknameChange}
+            value={userPhoneNumber}
+            onChange={onPhoneNumberChange}
             required
           />
           <label>
-            {/* {userPhoneNumber.length > 0 && (
+            {userPhoneNumber.length > 0 && (
               <span
                 className={`message text-xs 
-                ${isNickname ? "text-secondary" : "text-error"}`}
-              >
-                {nicknameMessage}
+                ${isPhoneNumber ? 'text-secondary' : 'text-error'}`}>
+                {phoneNumberMessage}
               </span>
-            )} */}
+            )}
           </label>
-        </div>
+        </div> */}
         <button
           className='btn btn-block btn-success mt-8'
           onClick={SignUpClickHandle}
