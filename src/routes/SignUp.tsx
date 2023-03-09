@@ -194,6 +194,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
 
 
   const SignUpClickHandle = () => {
+    console.log(
+      userID, userPW, userName, `${userBirthYear}-${userBirthMonth}-${userBirthDay}`,
+      userNickname, userEmail, `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
+      userGender ? "1" : "0"
+    )
     axios
       .post('/api/users/sign-up/', {
         username: userID,
@@ -202,12 +207,12 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         birth: `${userBirthYear}-${userBirthMonth}-${userBirthDay}`,
         nickname: userNickname,
         email: userEmail,
-        phone: '010-1234-1234',
-        gender: 1,
+        phone: `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
+        gender: userGender ? "1" : "0",
       })
       .then(({ data }) => {
         console.log(data);
-        navigate('/');
+        // navigate("/");
       })
       .catch((err) => console.log(err));
   };
