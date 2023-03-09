@@ -32,7 +32,12 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [userBirthMonth, setUserBirthMonth] = useState<string>('');
   const [userBirthDay, setUserBirthDay] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
-  const [userPhoneNumber, setUserPhoneNumber] = useState<string>('');
+  const [userGender, setUserGender] = useState<boolean>(false);
+  const [userPhoneAreaCode, setUserPhoneAreaCode] = useState<string>("");
+  const [userPhoneExchangeCode, setUserPhoneExchangeCode] =
+    useState<string>("");
+  const [userPhoneSubscriberNumber, setUserPhoneSubscriberNumber] =
+    useState<string>("");
 
   const [lat, setLat] = useState<string>('');
   const [lng, setLng] = useState<string>('');
@@ -45,7 +50,12 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [isCertifiedEmail, setIsCertifiedEmail] = useState<boolean>(false);
   const [isNickname, setIsNickname] = useState<boolean>(false);
   const [isAddress, setIsAddress] = useState<boolean>(false);
-  const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false);
+  const [isUserPhoneAreaCode, setIsUserPhoneAreaCode] =
+    useState<boolean>(false);
+  const [isUserPhoneExchangeCode, setIsUserPhoneExchangeCode] =
+    useState<boolean>(false);
+  const [isUserPhoneSubscriberNumber, setIsUserPhoneSubscriberNumber] =
+    useState<boolean>(false);
 
   //오류메시지 상태저장
   const [IDMessage, setIDMessage] = useState<string>('');
@@ -236,6 +246,66 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       setIsAddress(true);
     },
   };
+
+  const onChangeUserPhoneAreaCodeInputHandler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const currPhoneAreaCode = event.target.value;
+      const parsedCode = parseInt(currPhoneAreaCode);
+
+      // 5글자 이상 입력 금지
+      if (currPhoneAreaCode.length > 4) return;
+      // 숫자만 입력
+      if (isNaN(parsedCode) && currPhoneAreaCode !== "") return;
+
+      if (currPhoneAreaCode.length > 2) setIsUserPhoneAreaCode(true);
+
+      setUserPhoneAreaCode(currPhoneAreaCode);
+    },
+    []
+  );
+
+  const onChangeUserPhoneExchangeCodeInputHandler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const currPhoneExchangeCode = event.target.value;
+      const parsedCode = parseInt(currPhoneExchangeCode);
+
+      // 5글자 이상 입력 금지
+      if (currPhoneExchangeCode.length > 4) return;
+      // 숫자만 입력
+      if (isNaN(parsedCode) && currPhoneExchangeCode !== "") return;
+
+      if (currPhoneExchangeCode.length > 3) setIsUserPhoneExchangeCode(true);
+
+      setUserPhoneExchangeCode(currPhoneExchangeCode);
+    },
+    []
+  );
+
+  const onchangeUserPhoneSubscriberNumberInputHandler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const currPhoneSubscriberNumber = event.target.value;
+      const parsedCode = parseInt(currPhoneSubscriberNumber);
+
+      // 5글자 이상 입력 금지
+      if (currPhoneSubscriberNumber.length > 4) return;
+      // 숫자만 입력
+      if (isNaN(parsedCode) && currPhoneSubscriberNumber !== "") return;
+
+      if (currPhoneSubscriberNumber.length > 4)
+        setIsUserPhoneSubscriberNumber(true);
+
+      setUserPhoneSubscriberNumber(currPhoneSubscriberNumber);
+    },
+    []
+  );
+
+  const onClickFemaleButtonHandler = useCallback(() => {
+    setUserGender(false);
+  }, []);
+
+  const onClickMaleButtonHandler = useCallback(() => {
+    setUserGender(true);
+  }, []);
 
   return (
     <div className='flex justify-center'>
