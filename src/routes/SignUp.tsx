@@ -202,11 +202,14 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         nickname: userNickname,
         email: userEmail,
         phone: `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
-        gender: userGender ? "1" : "0",
+        gender: userGender,
       })
-      .then(({ data }) => {
-        console.log(data);
-        // navigate("/");
+      .then(({ data: { resultCode } }) => {
+        if (resultCode === "SUCCESS") {
+          alert("회원가입에 성공하였습니다");
+        }
+
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
