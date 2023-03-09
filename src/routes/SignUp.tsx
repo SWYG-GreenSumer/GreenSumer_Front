@@ -192,15 +192,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     []
   );
 
-
   const SignUpClickHandle = () => {
-    console.log(
-      userID, userPW, userName, `${userBirthYear}-${userBirthMonth}-${userBirthDay}`,
-      userNickname, userEmail, `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
-      userGender ? "1" : "0"
-    )
     axios
-      .post('/api/users/sign-up/', {
+      .post("/api/users/sign-up/", {
         username: userID,
         password: userPW,
         name: userName,
@@ -208,11 +202,14 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         nickname: userNickname,
         email: userEmail,
         phone: `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
-        gender: userGender ? "1" : "0",
+        gender: userGender,
       })
-      .then(({ data }) => {
-        console.log(data);
-        // navigate("/");
+      .then(({ data: { resultCode } }) => {
+        if (resultCode === "SUCCESS") {
+          alert("회원가입에 성공하였습니다");
+        }
+
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -592,16 +589,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         <button
           className="btn btn-block btn-success mt-8"
           onClick={SignUpClickHandle}
-          disabled={
-            !(
-              isID &&
-              isPW &&
-              isPWConfirm &&
-              isEmail &&
-              
-              isNickname 
-            )
-          }
+          disabled={!(isID && isPW && isPWConfirm && isEmail && isNickname)}
         >
           회원가입
         </button>
