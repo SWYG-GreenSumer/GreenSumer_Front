@@ -11,13 +11,13 @@ declare global {
 
 type AppProps = {};
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app';
 
 axios.defaults.withCredentials = true;
 
 const App: FunctionComponent<AppProps> = () => {  
   return (
-    <div className='h-full bg-[#FDFDFD]'>
+    <div className='h-full bg-[#FDFDFD] text-black'>
       {/* 여기에 글로벌-스타일-컴포넌트 위치 */}
       <GlobalStyle />
       <AppRouter />
