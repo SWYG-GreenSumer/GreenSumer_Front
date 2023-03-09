@@ -192,15 +192,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     []
   );
 
-
   const SignUpClickHandle = () => {
-    console.log(
-      userID, userPW, userName, `${userBirthYear}-${userBirthMonth}-${userBirthDay}`,
-      userNickname, userEmail, `${userPhoneAreaCode}-${userPhoneExchangeCode}-${userPhoneSubscriberNumber}`,
-      userGender ? "1" : "0"
-    )
     axios
-      .post('/api/users/sign-up/', {
+      .post("/api/users/sign-up/", {
         username: userID,
         password: userPW,
         name: userName,
