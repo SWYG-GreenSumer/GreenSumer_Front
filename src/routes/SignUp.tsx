@@ -586,16 +586,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         <button
           className="btn btn-block btn-success mt-8"
           onClick={SignUpClickHandle}
-          disabled={
-            !(
-              isID &&
-              isPW &&
-              isPWConfirm &&
-              isEmail &&
-              
-              isNickname 
-            )
-          }
+          disabled={!(isID && isPW && isPWConfirm && isEmail && isNickname)}
         >
           회원가입
         </button>
