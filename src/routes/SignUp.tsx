@@ -192,21 +192,6 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
     []
   );
 
-  const onPhoneNumberChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const phoneNumber = event.target.value;
-      setUserPhoneNumber(phoneNumber);
-
-      if (phoneNumber.length < 13) {
-        setPhoneNumberMessage('올바른 휴대폰 번호가 아닙니다.');
-        setIsPhoneNumber(false);
-      } else {
-        setPhoneNumberMessage('올바른 휴대폰 번호입니다.');
-        setIsPhoneNumber(true);
-      }
-    },
-    []
-  );
 
   const SignUpClickHandle = () => {
     axios
