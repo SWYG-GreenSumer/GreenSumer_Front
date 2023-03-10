@@ -2,11 +2,14 @@ import axios from 'axios';
 import React, { FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 interface LoginProps { }
+import { useRecoilState } from "recoil";
+import { authState } from "../atoms/AuthTokensAtoms";
 
 const Login: FunctionComponent<LoginProps> = () => {
   const navigate = useNavigate();
   const [userID, setUserID] = React.useState<string>('');
   const [userPW, setUserPW] = React.useState<string>('');
+  const [authTokens, setAuthTokens] = useRecoilState(authState);
 
   const onLoginHandler = () => {
     let body = {
@@ -14,11 +17,17 @@ const Login: FunctionComponent<LoginProps> = () => {
       password: userPW,
     };
 
-    axios.post('/api/users/login', body).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("/api/users/login/", body)
+      .then(({ data: { resultCode, accessToken, refreshToken } }) => {
+        if (resultCode === "SUCCESS") {
+          setAuthTokens({ accessToken, refreshToken });
+          alert("로그인에 성공하였습니다");
+        }
 
-    navigate('/');
+        navigate("/");
+      })
+      .catch((err) => console.log(err));    
   };
 
   return (
