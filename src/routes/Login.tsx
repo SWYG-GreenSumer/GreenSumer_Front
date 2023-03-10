@@ -2,48 +2,32 @@ import axios from 'axios';
 import React, { FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 interface LoginProps { }
+import { useRecoilState } from "recoil";
+import { authState } from "../atoms/AuthTokensAtoms";
 
 const Login: FunctionComponent<LoginProps> = () => {
   const navigate = useNavigate();
   const [userID, setUserID] = React.useState<string>('');
   const [userPW, setUserPW] = React.useState<string>('');
+  const [authTokens, setAuthTokens] = useRecoilState(authState);
 
   const onLoginHandler = () => {
-    // const fetchLogin = async () => {
-    //   const settings = {
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       username: userID,
-    //       password: userPW,
-    //     }),
-    //   };
-
-    //   try {
-    //     const fetchResponse = await fetch(`https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app/api/users/login`, settings);
-    //     const data = await fetchResponse.json();
-    //     return data;
-    //   } catch (e) {
-    //     alert('로그인 에러가 발생하였습니다. ' + e);
-    //     return e;
-    //   }
-    // };
-
-    // fetchLogin();
-
     let body = {
       username: userID,
       password: userPW,
     };
 
-    axios.post('/api/users/login', body).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("/api/users/login/", body)
+      .then(({ data: { resultCode, accessToken, refreshToken } }) => {
+        if (resultCode === "SUCCESS") {
+          setAuthTokens({ accessToken, refreshToken });
+          alert("로그인에 성공하였습니다");
+        }
 
-    navigate('/');
+        navigate("/");
+      })
+      .catch((err) => console.log(err));    
   };
 
   return (
