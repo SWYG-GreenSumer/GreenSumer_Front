@@ -16,12 +16,11 @@ type AppProps = {};
 const App: FunctionComponent<AppProps> = () => {
   const tokens = useRecoilValue(authState);
 
-  axios.defaults.baseURL =
-    'https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app';
+  axios.defaults.baseURL = 'https://port-0-greensumer-back-3xcah2glbj4mak4.gksl2.cloudtype.app';
   axios.defaults.withCredentials = true;
   // axios.defaults.headers.common['Authorization'] = `Bearer ${tokens.accessToken}`;
   return (
-    <div className='h-full bg-[#FDFDFD] text-black'>
+    <div className="h-full bg-[#FDFDFD] text-black">
       {/* 여기에 글로벌-스타일-컴포넌트 위치 */}
       <GlobalStyle />
       <AppRouter />

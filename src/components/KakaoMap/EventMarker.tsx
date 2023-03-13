@@ -1,12 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
 type EventMarkerProps = {
-    storeName: string;
+  storeName: string;
 };
 
-const EventMarker: FunctionComponent<
-  EventMarkerProps
-> = ({storeName}) => {
+const EventMarker: FunctionComponent<EventMarkerProps> = ({ storeName }) => {
   return <div>{storeName}</div>;
 };
 

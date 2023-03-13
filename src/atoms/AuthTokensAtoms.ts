@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector } from 'recoil';
 
 interface AuthTokens {
   accessToken: string;
@@ -6,6 +6,6 @@ interface AuthTokens {
 }
 
 export const authState = atom<AuthTokens>({
-  key: "authState",
-  default: { accessToken: "", refreshToken: "" },
+  key: 'authState',
+  default: { accessToken: '', refreshToken: '' },
 });

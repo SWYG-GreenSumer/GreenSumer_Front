@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 export default function Test1({}: Props) {
-  return (
-    <div>Test1</div>
-  )
+  return <div>Test1</div>;
 }

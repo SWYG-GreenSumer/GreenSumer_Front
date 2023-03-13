@@ -6,19 +6,14 @@ type BirthYearProps = {
 
 const BirthYear: FunctionComponent<BirthYearProps> = ({ setUserBirthYear }) => {
   const birthYear = new Date().getFullYear();
-  const birthYearArray = Array.from({ length: 104 }, (_, index) =>
-    (birthYear - index).toString()
-  );
+  const birthYearArray = Array.from({ length: 104 }, (_, index) => (birthYear - index).toString());
 
-  const onClickBirthYearHandler = useCallback(
-    (event: React.MouseEvent<HTMLElement>): void => {
-      const currYear = event.currentTarget.textContent;
-      if (currYear !== null) {
-        setUserBirthYear(currYear);
-      }
-    },
-    []
-  );
+  const onClickBirthYearHandler = useCallback((event: React.MouseEvent<HTMLElement>): void => {
+    const currYear = event.currentTarget.textContent;
+    if (currYear !== null) {
+      setUserBirthYear(currYear);
+    }
+  }, []);
 
   return (
     <div>

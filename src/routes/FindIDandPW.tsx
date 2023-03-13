@@ -1,5 +1,5 @@
-import React from "react";
-import { FunctionComponent } from "react";
+import React from 'react';
+import { FunctionComponent } from 'react';
 
 interface FindIPandPWProps {}
 
@@ -25,7 +25,6 @@ const FindIPandPW: FunctionComponent<FindIPandPWProps> = () => {
         <label></label>
       </div>
 
-      
       <button className="btn btn-block btn-success mt-8">회원가입</button>
     </div>
   );

@@ -23,19 +23,19 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
 
   return (
     <div>
-      <div className='overflow-x-auto'>
-        <table className='table w-full'>
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           {/* <!-- head --> */}
           <thead>
             {/* 후기 게시판 페이지에서만 표시 */}
             {location.pathname.includes('reviewBoard') && (
               <tr>
-                <th className='bg-success'>번호</th>
-                <th className='bg-success'>종류</th>
-                <th className='bg-success'>제목</th>
-                <th className='bg-success'>글쓴이</th>
-                <th className='bg-success'>날짜</th>
-                <th className='bg-success'>조회수</th>
+                <th className="bg-success">번호</th>
+                <th className="bg-success">종류</th>
+                <th className="bg-success">제목</th>
+                <th className="bg-success">글쓴이</th>
+                <th className="bg-success">날짜</th>
+                <th className="bg-success">조회수</th>
               </tr>
             )}
           </thead>
@@ -48,9 +48,10 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
                   return (
                     <tr
                       key={e.product_id}
-                      className='cursor-pointer'
-                      onClick={() => navigate(`/reviewDetail/${e.product_id}`)}>
-                      <th>{e.product_id}</th>                      
+                      className="cursor-pointer"
+                      onClick={() => navigate(`/reviewDetail/${e.product_id}`)}
+                    >
+                      <th>{e.product_id}</th>
                       <td>{e.title}</td>
                       <td>{e.nickname}</td>
                       <td>{e.createdAt}</td>

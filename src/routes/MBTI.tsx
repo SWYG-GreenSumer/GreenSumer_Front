@@ -67,9 +67,7 @@ export default function MBTI({}: Props) {
       navigate(`/mbti/${+id + 1}`);
       // 결과 페이지로 이동
     } else {
-      const resultMbti = `${E > I ? 'E' : 'I'}${T > F ? 'T' : 'F'}${
-        P > J ? 'P' : 'J'
-      }`;
+      const resultMbti = `${E > I ? 'E' : 'I'}${T > F ? 'T' : 'F'}${P > J ? 'P' : 'J'}`;
       const result = mbtiResultJSON.filter((e) => e.mbti === resultMbti)[0];
       setResult(result);
       navigate(`/mbti/result`);
@@ -118,14 +116,14 @@ export default function MBTI({}: Props) {
       {!location.pathname.includes('result') && id === undefined ? (
         <div>
           <p>{id}</p>
-          <button className='btn w-full' onClick={increasePage}>
+          <button className="btn w-full" onClick={increasePage}>
             테스트 시작
           </button>
         </div>
       ) : /** param 중 result 포함할 때 (결과 페이지) */
       location.pathname.includes('result') ? (
         <>
-          <div className='card'>결과 페이지 입니다.</div>
+          <div className="card">결과 페이지 입니다.</div>
           <div>
             <p>{result.title}</p>
             <p>{result.content}</p>
@@ -135,25 +133,21 @@ export default function MBTI({}: Props) {
         id !== undefined && (
           /** 테스트 중 페이지  */
           <>
-            <progress
-              className='progress progress-primary w-56'
-              value={process}
-              max='90'
-            />
+            <progress className="progress progress-primary w-56" value={process} max="90" />
             <p>{mbtiQuestionJSON[+id].question}</p>
-            <button className='btn' onClick={onNoClickHandle}>
+            <button className="btn" onClick={onNoClickHandle}>
               전혀 그렇지 않다
             </button>
-            <button className='btn' onClick={onNoClickHandle}>
+            <button className="btn" onClick={onNoClickHandle}>
               그렇지 않다
             </button>
-            <button className='btn' onClick={onMiddleClickHandle}>
+            <button className="btn" onClick={onMiddleClickHandle}>
               보통이다
             </button>
-            <button className='btn' onClick={onYesClickHandle}>
+            <button className="btn" onClick={onYesClickHandle}>
               그렇다
             </button>
-            <button className='btn' onClick={onYesClickHandle}>
+            <button className="btn" onClick={onYesClickHandle}>
               매우 그렇다
             </button>
           </>
