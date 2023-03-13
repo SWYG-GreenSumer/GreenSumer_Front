@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Home from '../routes/Home';
@@ -28,24 +23,23 @@ const AppRouter = () => {
           location.pathname.includes('findNearestWay')
             ? `m-auto w-[80%] relative`
             : `mb-10 mt-10 m-auto w-[95%] sm:w-4/5`
-        }`}>
+        }`}
+      >
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
-          <Route path='/findIDandPW' element={<FindIDandPW />}></Route>
-          <Route path='/myPage' element={<MyPage />}></Route>
-          <Route path='/reviewBoard' element={<ReviewBoard />}></Route>
-          <Route path='/postReview' element={<PostReview />}></Route>
-          <Route path='/findNearestWay' element={<FindNearestWay />}></Route>
-          <Route
-            path='/findNearestWay/:id'
-            element={<FindNearestWay />}></Route>
-          <Route path='/reviewDetail/:id' element={<ReviewDetail />}></Route>
-          <Route path='/mbti' element={<MBTI />}></Route>
-          <Route path='/mbti/:id' element={<MBTI />}></Route>
-          <Route path='/mbti/result' element={<MBTI />}></Route>
-          <Route path='*' element={<NotFound />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/findIDandPW" element={<FindIDandPW />}></Route>
+          <Route path="/myPage" element={<MyPage />}></Route>
+          <Route path="/reviewBoard" element={<ReviewBoard />}></Route>
+          <Route path="/postReview" element={<PostReview />}></Route>
+          <Route path="/findNearestWay" element={<FindNearestWay />}></Route>
+          <Route path="/findNearestWay/:id" element={<FindNearestWay />}></Route>
+          <Route path="/reviewDetail/:id" element={<ReviewDetail />}></Route>
+          <Route path="/mbti" element={<MBTI />}></Route>
+          <Route path="/mbti/:id" element={<MBTI />}></Route>
+          <Route path="/mbti/result" element={<MBTI />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
       {!location.pathname.includes('findNearestWay') && <Footer />}

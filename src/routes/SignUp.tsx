@@ -33,11 +33,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [userBirthDay, setUserBirthDay] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [userGender, setUserGender] = useState<boolean>(false);
-  const [userPhoneAreaCode, setUserPhoneAreaCode] = useState<string>("");
-  const [userPhoneExchangeCode, setUserPhoneExchangeCode] =
-    useState<string>("");
-  const [userPhoneSubscriberNumber, setUserPhoneSubscriberNumber] =
-    useState<string>("");
+  const [userPhoneAreaCode, setUserPhoneAreaCode] = useState<string>('');
+  const [userPhoneExchangeCode, setUserPhoneExchangeCode] = useState<string>('');
+  const [userPhoneSubscriberNumber, setUserPhoneSubscriberNumber] = useState<string>('');
 
   const [lat, setLat] = useState<string>('');
   const [lng, setLng] = useState<string>('');
@@ -50,18 +48,14 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   const [isCertifiedEmail, setIsCertifiedEmail] = useState<boolean>(false);
   const [isNickname, setIsNickname] = useState<boolean>(false);
   const [isAddress, setIsAddress] = useState<boolean>(false);
-  const [isUserPhoneAreaCode, setIsUserPhoneAreaCode] =
-    useState<boolean>(false);
-  const [isUserPhoneExchangeCode, setIsUserPhoneExchangeCode] =
-    useState<boolean>(false);
-  const [isUserPhoneSubscriberNumber, setIsUserPhoneSubscriberNumber] =
-    useState<boolean>(false);
+  const [isUserPhoneAreaCode, setIsUserPhoneAreaCode] = useState<boolean>(false);
+  const [isUserPhoneExchangeCode, setIsUserPhoneExchangeCode] = useState<boolean>(false);
+  const [isUserPhoneSubscriberNumber, setIsUserPhoneSubscriberNumber] = useState<boolean>(false);
 
   //오류메시지 상태저장
   const [IDMessage, setIDMessage] = useState<string>('');
   const [passwordMessage, setPasswordMessage] = useState<string>('');
-  const [passwordConfirmMessage, setPasswordConfirmMessage] =
-    useState<string>('');
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState<string>('');
   const [emailMessage, setEmailMessage] = useState<string>('');
   const [nicknameMessage, setNicknameMessage] = useState<string>('');
   const [phoneNumberMessage, setPhoneNumberMessage] = useState<string>('');
@@ -82,7 +76,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             y: string;
             x: string;
           }[],
-          status: any
+          status: any,
         ) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
@@ -91,46 +85,37 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             setLat(`${coords.La}`);
             setLng(`${coords.Ma}`);
           }
-        }
+        },
       );
   }, [isAddress]);
 
   // ID 변경됐을 때 유효성 검사
   // 5자 ~ 12자 이어야 함
-  const onIDChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const id = event.target.value;
-      setUserID(id);
-      if (id.length >= 5 && id.length <= 12) {
-        setIDMessage("올바른 ID 형식입니다 :)");
-        setIsID(true);
-      } else {
-        setIDMessage("5글자 이상 12글자 이하로 입력해주세요.");
-        setIsID(false);
-      }
-    },
-    []
-  );
+  const onIDChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const id = event.target.value;
+    setUserID(id);
+    if (id.length >= 5 && id.length <= 12) {
+      setIDMessage('올바른 ID 형식입니다 :)');
+      setIsID(true);
+    } else {
+      setIDMessage('5글자 이상 12글자 이하로 입력해주세요.');
+      setIsID(false);
+    }
+  }, []);
 
-  const onPWChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,20}$/;
-      const currentPassword = event.target.value;
-      setUserPW(currentPassword);
+  const onPWChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,20}$/;
+    const currentPassword = event.target.value;
+    setUserPW(currentPassword);
 
-      if (passwordRegex.test(currentPassword)) {
-        setIsPW(true);
-        setPasswordMessage("안전한 비밀번호입니다 :)");
-      } else {
-        setPasswordMessage(
-          "숫자 + 영문자 + 특수문자 조합으로 10자리 이상 20자리 이하 입력해주세요."
-        );
-        setIsPW(false);
-      }
-    },
-    []
-  );
+    if (passwordRegex.test(currentPassword)) {
+      setIsPW(true);
+      setPasswordMessage('안전한 비밀번호입니다 :)');
+    } else {
+      setPasswordMessage('숫자 + 영문자 + 특수문자 조합으로 10자리 이상 20자리 이하 입력해주세요.');
+      setIsPW(false);
+    }
+  }, []);
 
   const onPWConfirmChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,63 +123,52 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       setUserPWConfirm(currentPasswordConfirm);
 
       if (currentPasswordConfirm === userPW) {
-        setPasswordConfirmMessage("비밀번호가 일치합니다 :)");
+        setPasswordConfirmMessage('비밀번호가 일치합니다 :)');
         setIsPWConfirm(true);
       } else {
-        setPasswordConfirmMessage(
-          "비밀번호가 일치하지 않습니다. 다시 입력해주세요."
-        );
+        setPasswordConfirmMessage('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
         setIsPWConfirm(false);
       }
     },
-    [userPW]
+    [userPW],
   );
 
-  const onEmailChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const emailRegex =
-        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-      const emailCurrent = event.target.value;
-      setUserEmail(emailCurrent);
+  const onEmailChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = event.target.value;
+    setUserEmail(emailCurrent);
 
-      if (emailRegex.test(emailCurrent)) {
-        setEmailMessage("올바른 이메일 형식입니다 : )");
-        setIsEmail(true);
-      } else {
-        setEmailMessage("이메일 형식이 틀렸습니다. 다시 입력해주세요.");
-        setIsEmail(false);
-      }
-    },
-    []
-  );
+    if (emailRegex.test(emailCurrent)) {
+      setEmailMessage('올바른 이메일 형식입니다 : )');
+      setIsEmail(true);
+    } else {
+      setEmailMessage('이메일 형식이 틀렸습니다. 다시 입력해주세요.');
+      setIsEmail(false);
+    }
+  }, []);
 
-  const onNicknameChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const nickname = event.target.value;
-      setUserNickname(nickname);
+  const onNicknameChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const nickname = event.target.value;
+    setUserNickname(nickname);
 
-      if (nickname.length >= 5) {
-        setIsNickname(true);
-        setNicknameMessage("올바른 닉네임 형식입니다 :)");
-      } else {
-        setIsNickname(false);
-        setNicknameMessage("닉네임의 길이를 확인해주세요.");
-      }
-    },
-    []
-  );
+    if (nickname.length >= 5) {
+      setIsNickname(true);
+      setNicknameMessage('올바른 닉네임 형식입니다 :)');
+    } else {
+      setIsNickname(false);
+      setNicknameMessage('닉네임의 길이를 확인해주세요.');
+    }
+  }, []);
 
-  const onNameChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const name = event.target.value;
-      setUserName(name);
-    },
-    []
-  );
+  const onNameChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.value;
+    setUserName(name);
+  }, []);
 
   const SignUpClickHandle = () => {
     axios
-      .post("/api/users/sign-up/", {
+      .post('/api/users/sign-up/', {
         username: userID,
         password: userPW,
         name: userName,
@@ -205,11 +179,11 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
         gender: userGender,
       })
       .then(({ data: { resultCode } }) => {
-        if (resultCode === "SUCCESS") {
-          alert("회원가입에 성공하였습니다");
+        if (resultCode === 'SUCCESS') {
+          alert('회원가입에 성공하였습니다');
         }
 
-        navigate("/");
+        navigate('/');
       })
       .catch((err) => console.log(err));
   };
@@ -242,13 +216,13 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       // 5글자 이상 입력 금지
       if (currPhoneAreaCode.length > 4) return;
       // 숫자만 입력
-      if (isNaN(parsedCode) && currPhoneAreaCode !== "") return;
+      if (isNaN(parsedCode) && currPhoneAreaCode !== '') return;
 
       if (currPhoneAreaCode.length > 2) setIsUserPhoneAreaCode(true);
 
       setUserPhoneAreaCode(currPhoneAreaCode);
     },
-    []
+    [],
   );
 
   const onChangeUserPhoneExchangeCodeInputHandler = useCallback(
@@ -259,13 +233,13 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       // 5글자 이상 입력 금지
       if (currPhoneExchangeCode.length > 4) return;
       // 숫자만 입력
-      if (isNaN(parsedCode) && currPhoneExchangeCode !== "") return;
+      if (isNaN(parsedCode) && currPhoneExchangeCode !== '') return;
 
       if (currPhoneExchangeCode.length > 3) setIsUserPhoneExchangeCode(true);
 
       setUserPhoneExchangeCode(currPhoneExchangeCode);
     },
-    []
+    [],
   );
 
   const onchangeUserPhoneSubscriberNumberInputHandler = useCallback(
@@ -276,14 +250,13 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
       // 5글자 이상 입력 금지
       if (currPhoneSubscriberNumber.length > 4) return;
       // 숫자만 입력
-      if (isNaN(parsedCode) && currPhoneSubscriberNumber !== "") return;
+      if (isNaN(parsedCode) && currPhoneSubscriberNumber !== '') return;
 
-      if (currPhoneSubscriberNumber.length > 4)
-        setIsUserPhoneSubscriberNumber(true);
+      if (currPhoneSubscriberNumber.length > 4) setIsUserPhoneSubscriberNumber(true);
 
       setUserPhoneSubscriberNumber(currPhoneSubscriberNumber);
     },
-    []
+    [],
   );
 
   const onClickFemaleButtonHandler = useCallback(() => {
@@ -295,18 +268,18 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
   }, []);
 
   return (
-    <div className='flex justify-center'>
+    <div className="flex justify-center">
       {/* 회원가입 input */}
-      <div className='SignupInputContainer flex-col justify-center'>
-        <div className='form-control w-full'>
-          <label className='label' htmlFor='userID'>
-            <span className='label-text'>ID</span>
+      <div className="SignupInputContainer flex-col justify-center">
+        <div className="form-control w-full">
+          <label className="label" htmlFor="userID">
+            <span className="label-text">ID</span>
           </label>
           <input
-            id='userID'
-            type='text'
-            placeholder='ID를 입력해주세요'
-            className='input input-bordered w-full'
+            id="userID"
+            type="text"
+            placeholder="ID를 입력해주세요"
+            className="input input-bordered w-full"
             value={userID}
             onChange={onIDChange}
             required
@@ -314,9 +287,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           <label>
             {userID.length > 0 && (
               <span
-                className={`message text-xs ${
-                  isID ? "text-secondary" : "text-error"
-                }
+                className={`message text-xs ${isID ? 'text-secondary' : 'text-error'}
                 `}
               >
                 {IDMessage}
@@ -339,11 +310,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           />
           <label>
             {userPW.length > 0 && (
-              <span
-                className={`message text-xs ${
-                  isPW ? "text-secondary" : "text-error"
-                }`}
-              >
+              <span className={`message text-xs ${isPW ? 'text-secondary' : 'text-error'}`}>
                 {passwordMessage}
               </span>
             )}
@@ -364,11 +331,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           />
           <label>
             {userPWConfirm.length > 0 && (
-              <span
-                className={`message text-xs ${
-                  isPWConfirm ? "text-secondary" : "text-error"
-                }`}
-              >
+              <span className={`message text-xs ${isPWConfirm ? 'text-secondary' : 'text-error'}`}>
                 {passwordConfirmMessage}
               </span>
             )}
@@ -392,11 +355,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
           </div>
           <label>
             {userEmail.length > 0 && (
-              <span
-                className={`message text-xs ${
-                  isEmail ? "text-secondary" : "text-error"
-                }`}
-              >
+              <span className={`message text-xs ${isEmail ? 'text-secondary' : 'text-error'}`}>
                 {emailMessage}
               </span>
             )}
@@ -431,7 +390,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userNickname.length > 0 && (
               <span
                 className={`message text-xs 
-                ${isNickname ? "text-secondary" : "text-error"}`}
+                ${isNickname ? 'text-secondary' : 'text-error'}`}
               >
                 {nicknameMessage}
               </span>
@@ -455,7 +414,7 @@ const SignUp: FunctionComponent<SignUpProps> = () => {
             {userNickname.length > 0 && (
               <span
                 className={`message text-xs 
-                ${isNickname ? "text-secondary" : "text-error"}`}
+                ${isNickname ? 'text-secondary' : 'text-error'}`}
               >
                 {nicknameMessage}
               </span>

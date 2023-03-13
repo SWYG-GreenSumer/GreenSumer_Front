@@ -1,11 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
-interface MyPageProps {
-    
-}
- 
+interface MyPageProps {}
+
 const MyPage: FunctionComponent<MyPageProps> = () => {
-    return ( <div>MyPage</div> );
-}
- 
+  return <div>MyPage</div>;
+};
+
 export default MyPage;

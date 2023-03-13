@@ -12,18 +12,16 @@ const ReviewBoard: FunctionComponent<ReviewBoardProps> = () => {
   return (
     <div>
       <ReviewList />
-      <div className='flex relative justify-center mt-10'>
-        <div className='btn-group m-x-auto'>
-          <button className='btn btn-success'>«</button>
-          <button className='btn btn-success'>1</button>
-          <button className='btn btn-primary'>2</button>
-          <button className='btn btn-success'>3</button>
-          <button className='btn btn-success'>4</button>
-          <button className='btn btn-success'>»</button>
+      <div className="flex relative justify-center mt-10">
+        <div className="btn-group m-x-auto">
+          <button className="btn btn-success">«</button>
+          <button className="btn btn-success">1</button>
+          <button className="btn btn-primary">2</button>
+          <button className="btn btn-success">3</button>
+          <button className="btn btn-success">4</button>
+          <button className="btn btn-success">»</button>
         </div>
-        <button
-          className='btn btn-success absolute right-0'
-          onClick={onPostClickHandle}>
+        <button className="btn btn-success absolute right-0" onClick={onPostClickHandle}>
           글쓰기
         </button>
       </div>

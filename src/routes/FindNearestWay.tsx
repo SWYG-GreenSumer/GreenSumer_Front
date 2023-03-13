@@ -12,7 +12,6 @@ const FindNearestWay: FunctionComponent<FindNearestWayProps> = () => {
 
   const location = useLocation();
 
-
   useEffect(() => {
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
@@ -31,7 +30,7 @@ const FindNearestWay: FunctionComponent<FindNearestWayProps> = () => {
     <div>
       <KakaoMap width={'100%'} height={'97vh'} lat={lat} lng={lng} />
       {location.pathname === '/findNearestWay' ? (
-        <StoreDrawer  />
+        <StoreDrawer />
       ) : (
         <ItemsDrawer setLat={setLat} setLng={setLng} />
       )}

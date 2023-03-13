@@ -11,12 +11,7 @@ type KakaoMapProps = {
   lng: number;
 };
 
-const KakaoMap: FunctionComponent<KakaoMapProps> = ({
-  width,
-  height,
-  lat,
-  lng,
-}) => {
+const KakaoMap: FunctionComponent<KakaoMapProps> = ({ width, height, lat, lng }) => {
   const location = useLocation();
 
   const EventMarkerContainer = ({ position, content }: any) => {
@@ -29,7 +24,8 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
         // @ts-ignore
         onClick={(marker) => map.panTo(marker.getPosition())}
         onMouseOver={() => setIsVisible(true)}
-        onMouseOut={() => setIsVisible(false)}>
+        onMouseOut={() => setIsVisible(false)}
+      >
         {isVisible && content}
       </MapMarker>
     );
@@ -47,7 +43,8 @@ const KakaoMap: FunctionComponent<KakaoMapProps> = ({
                 borderRadius: 'var(--rounded-box, 1rem)',
               }
             : { width: width, height: height }
-        }>
+        }
+      >
         {storeDataJSON.map((value) => (
           <EventMarkerContainer
             key={`EventMarkerContainer-${value.lat}-${value.lng}`}

@@ -26,23 +26,16 @@ type BirthDayProps = {
   setUserBirthDay: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const BirthDay: FunctionComponent<BirthDayProps> = ({
-  birthMonth,
-  birthYear,
-  setUserBirthDay,
-}) => {
+const BirthDay: FunctionComponent<BirthDayProps> = ({ birthMonth, birthYear, setUserBirthDay }) => {
   const birthDayLength = getDaysInMonth(birthMonth, birthYear);
-  const birthDayArray = Array.from(
-    { length: birthDayLength },
-    (_, index) => index + 1
-  );
+  const birthDayArray = Array.from({ length: birthDayLength }, (_, index) => index + 1);
 
   const onClickBirthDayHandler = useCallback((event: React.MouseEvent<HTMLElement>): void => {
     const currDay = event.currentTarget.textContent;
-    if(currDay !== null){
-        setUserBirthDay(currDay);
+    if (currDay !== null) {
+      setUserBirthDay(currDay);
     }
-  },[])
+  }, []);
 
   return (
     <div>
