@@ -19,12 +19,20 @@ const Login: FunctionComponent<LoginProps> = () => {
 
     axios
       .post('/api/users/login/', body)
-      .then(({ data: { resultCode, accessToken, refreshToken } }) => {
-        if (resultCode === 'SUCCESS') {
-          setAuthTokens({ accessToken, refreshToken });
-          alert('로그인에 성공하였습니다');
-        }
-
+      .then(
+        ({
+          data: {
+            resultCode,
+            result: { accessToken, refreshToken },
+          },
+        }) => {
+          if (resultCode === 'SUCCESS') {
+            setAuthTokens({ accessToken, refreshToken });
+          }
+        },
+      )
+      .then(() => {
+        alert('로그인에 성공하였습니다');
         navigate('/');
       })
       .catch((err) => console.log(err));
