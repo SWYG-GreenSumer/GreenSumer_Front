@@ -38,8 +38,8 @@ const Login: FunctionComponent<LoginProps> = () => {
         </p>
       </div>
 
-      <form method="post" className="flex flex-col items-center">
-        <div className="form-control w-full max-w-xl">
+      <div className="flex flex-col items-center">
+        <div className="div-control w-full max-w-xl">
           <label className="label" htmlFor="userID">
             <span className="label-text">ID</span>
           </label>
@@ -52,7 +52,7 @@ const Login: FunctionComponent<LoginProps> = () => {
             onChange={(e) => setUserID(e.target.value)}
           />
         </div>
-        <div className="form-control w-full max-w-xl">
+        <div className="w-full max-w-xl">
           <label className="label" htmlFor="userPW">
             <span className="label-text">Password</span>
           </label>
@@ -73,7 +73,7 @@ const Login: FunctionComponent<LoginProps> = () => {
             Enter!
           </button>
         </div>
-      </form>
+      </div>
 
       <div className="findIDandSignupContainer">
         <div className="flex flex-col w-full">
