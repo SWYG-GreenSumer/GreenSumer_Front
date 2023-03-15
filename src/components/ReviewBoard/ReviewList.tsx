@@ -15,7 +15,7 @@ const ReviewList: FunctionComponent<ReviewListProps> = () => {
 
   useEffect(() => {
     axios
-      .get('/api/reviews/news/')
+      .get('/api/reviews/news')
       .then(
         ({
           data: {
