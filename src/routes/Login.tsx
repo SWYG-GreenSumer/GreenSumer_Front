@@ -28,6 +28,11 @@ const Login: FunctionComponent<LoginProps> = () => {
         }) => {
           if (resultCode === 'SUCCESS') {
             setAuthTokens({ accessToken, refreshToken });
+            // 세션 스토리지에 access token 저장하기
+            sessionStorage.setItem('access_token', accessToken);
+
+            // 로컬 스토리지에 refresh token 저장하기
+            localStorage.setItem('refresh_token', refreshToken);
           }
         },
       )
