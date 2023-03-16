@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dumpData } from '../../public/json/dumpdata';
@@ -23,16 +24,24 @@ const ReviewDetail: FunctionComponent<ReviewDetailProps> = () => {
   const [reviewDetail, setReviewDetail] = useState<ReviewDetailJSON>();
 
   useEffect(() => {
-    const fetchReviewDetail = async () => {
-      const data = await fetch('/api/articles/news', {
-        method: 'GET',
+    axios
+      .get('/api/reviews/news')
+      .then(
+        ({
+          data: {
+            resultCode,
+            result: { content },
+          },
+        }) => {
+          if (resultCode === 'SUCCESS') {
+            console.log(content);
+            // setReviewPosts(content);
+          }
+        },
+      )
+      .catch((err) => {
+        console.log(err);
       });
-      const jsonData = await data.json();
-      console.log(jsonData);
-      //   setResult(jsonData.results);
-    };
-
-    fetchReviewDetail();
   }, []);
 
   return (
